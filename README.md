@@ -23,7 +23,7 @@
 
 ## MVP
 
-_Witme is a platform for developers and designers to create a team for their side-project or study group. Users can create a post describing their current team and project (if they already have one) or create a study group, either local or remote. In addition, the list can be categorized by programming skill or role(Front-end, Back-end, Designer).
+Witme is a platform for developers and designers to create a team for their side-project or study group. Users can create a post describing their current team and project (if they already have one) or create a study group, either local or remote. In addition, the list can be categorized by programming skill or role(Front-end, Back-end, Designer).
 
 ### Goals
 
@@ -31,11 +31,7 @@ _Witme is a platform for developers and designers to create a team for their sid
 - Comments on each post
 - Categorized (filter) list by programming skill or role
 
-<br>
-
 ### Libraries and Dependencies
-
-> Use this section to list all supporting libraries and dependencies, and their role in the project. Below is an example - this needs to be replaced!
 
 |     Library      | Description                                |
 | :--------------: | :----------------------------------------- |
@@ -46,37 +42,12 @@ _Witme is a platform for developers and designers to create a team for their sid
 |  Bcrypt  | Password-hashing |
 |  Pry  | Ruby REPL |
 
-<br>
 
 ### Client (Front End)
 
 #### Wireframes
 
 > Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
-
-![Dummy Link](url)
-
-- Desktop Landing
-
-![Dummy Link](url)
-
-- Desktop Hero
-
-![Dummy Link](url)
-
-- Resource Index
-
-![Dummy Link](url)
-
-- Resource Show
-
-![Dummy Link](url)
-
-- Tablet Resource Index
-
-![Dummy Link](url)
-
-- Mobile Resource Index
 
 #### Component Tree
 
