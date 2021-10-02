@@ -57,25 +57,57 @@ Witme is a platform for developers and designers to create a team for their side
 
 #### Component Architecture
 
-> Use this section to define your React components and the data architecture of your app. This should be a reflection of how you expect your directory/file tree to look like. 
-
 ``` structure
 
 src
 |__ assets/
       |__ fonts
-      |__ graphics
       |__ images
-      |__ mockups
 |__ components/
-      |__ Header.jsx
+      |__ style
+          |__ Nav.css
+          |__ Footer.css
+          |__ PostForm.css
+          |__ PostList.css
+      |__ layout
+          |__ Layout.jsx
+          |__ Nav.jsx
+          |__ Footer.jsx
+      |__ PostForm.jsx
+      |__ PostList.jsx
+      |__ PostDetail.jsx
+      |__ CommentInput.jsx
+      |__ Comments.jsx
 |__ services/
+      |__ apiConfig.js
+      |__ auth.js
+      |__ posts.js
+      |__ comments.js
+      |__ projects.js
+|__ screens/
+      |__ style
+          |__ Home.css
+          |__ Lookingfor.css
+          |__ Ask.css          
+          |__ Login.css
+          |__ Signup.css
+      |__ Home.jsx
+      |__ PostList.jsx (Filtered by categories (Ask, Join, Recruit))
+      |__ PostDetail.jsx
+      |__ CreatePost.jsx
+      |__ UpdatePost.jsx
+      |__ ProjectList.jsx
+      |__ ProjectDetail.jsx
+      |__ CreateProject.jsx
+      |__ UpdateProject.jsx
+      |__ Login.jsx
+      |__ Signup.jsx
+      
 
 ```
 
 #### Time Estimates
 
-> Use this section to estimate the time necessary to build out each of the components you've described above.
 
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
@@ -83,16 +115,12 @@ src
 | Create CRUD Actions |    H     |     3 hrs      |     1 hrs     |     TBD     |
 | TOTAL               |          |     6 hrs      |     3 hrs     |     TBD     |
 
-> _Why is this necessary? Time frames are key to the development cycle. You have limited time to code your app, and your estimates can then be used to evaluate possibilities of your MVP and post-MVP based on time needed. It's best you assume an additional hour for each component, as well as a few hours added to the total time, to play it safe._
-
-<br>
 
 ### Server (Back End)
 
 #### ERD Model
 
-![ERD Sample](https://i.imgur.com/efMWGbj.png)
-<br>
+![ERD-witme](https://i.imgur.com/efMWGbj.png)
 
 ***
 
