@@ -51,9 +51,7 @@ Witme is a platform for developers and designers to create a team for their side
 
 #### Component Tree
 
-> Use this section to display the structure of how your React components are being rendered. This should show the parent to child relation between you components. In other words, show which components are rendering the other components. Include a link to your component tree
-
-[Component Tree Sample](https://gist.git.generalassemb.ly/davidtwhitlatch/414107e2560ae0bb65e233570f2fe056#file-component-tree-png)
+[witme-component-tree](![image](https://user-images.githubusercontent.com/78275456/135735218-d015d42d-d1ba-4b70-a820-a619ba3bbecc.png)
 
 #### Component Architecture
 
