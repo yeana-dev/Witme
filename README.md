@@ -15,7 +15,7 @@
 - [Code Showcase](#code-showcase)
 - [Code Issues & Resolutions](#code-issues--resolutions)
 
-<br>
+***
 
 ## Overview
 
@@ -25,11 +25,15 @@
 
 Witme is a platform for developers and designers to create a team for their side-project or study group. Users can create a post describing their current team and project (if they already have one) or create a study group, either local or remote. In addition, the list can be categorized by programming skill or role(Front-end, Back-end, Designer).
 
+***
+
 ### Goals
 
 - CRUD on two tables (Team Project or Study group)
 - Comments on each post
 - Categorized (filter) list by programming skill or role
+
+***
 
 ### Libraries and Dependencies
 
@@ -42,6 +46,7 @@ Witme is a platform for developers and designers to create a team for their side
 |  Bcrypt  | Password-hashing |
 |  Pry  | Ruby REPL |
 
+***
 
 ### Client (Front End)
 
@@ -49,9 +54,13 @@ Witme is a platform for developers and designers to create a team for their side
 
 > Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
 
+***
+
 #### Component Tree
 
-[witme-component-tree](![image](https://user-images.githubusercontent.com/78275456/135735218-d015d42d-d1ba-4b70-a820-a619ba3bbecc.png)
+![witme-component-tree](https://user-images.githubusercontent.com/78275456/135735218-d015d42d-d1ba-4b70-a820-a619ba3bbecc.png)
+
+***
 
 #### Component Architecture
 
@@ -122,12 +131,13 @@ src
 | CSS |    L     |     24 hrs      |     - hrs     |    - hrs    |
 | TOTAL               |          |     77 hrs      |     - hrs     |     TBD     |
 
+***
 
 ### Server (Back End)
 
 #### ERD Model
 
-![ERD-witme](https://i.imgur.com/efMWGbj.png)
+![ERD-witme](https://user-images.githubusercontent.com/78275456/135768812-d2a18004-82db-41b9-92ec-51a77e1d70c4.png)
 
 ***
 
