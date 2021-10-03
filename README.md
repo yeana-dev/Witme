@@ -84,6 +84,8 @@ src
       |__ posts.js
       |__ comments.js
       |__ projects.js
+|__ containers
+      |__ MainContainer.jsx
 |__ screens/
       |__ style
           |__ Home.css
@@ -111,9 +113,16 @@ src
 
 | Task                | Priority | Estimated Time | Time Invested | Actual Time |
 | ------------------- | :------: | :------------: | :-----------: | :---------: |
-| Add Contact Form    |    L     |     3 hrs      |     2 hrs     |    3 hrs    |
-| Create CRUD Actions |    H     |     3 hrs      |     1 hrs     |     TBD     |
-| TOTAL               |          |     6 hrs      |     3 hrs     |     TBD     |
+| Set up back-end (Ruby) |    H     |     4 hrs      |     - hrs     |    - hrs    |
+| Set up front-end (React) |    H     |     4 hrs      |     - hrs     |    - hrs    |
+| Create SQL database tables |    H     |     3 hrs      |     - hrs     |    - hrs    |
+| Add controllers and routes |    H     |     6 hrs      |     - hrs     |    - hrs    |
+| Authorization/Authentication (JWT/Bcrypt)    |    H     |     6 hrs      |     - hrs     |    - hrs    |
+| Fetch API data from back-end    |    H     |     6 hrs      |     - hrs     |    - hrs    |
+| Create react components    |    H     |     12 hrs      |     - hrs     |    - hrs    |
+| Create screens |    H     |     12 hrs      |     0 hrs     |    - hrs    |
+| CSS |    L     |     24 hrs      |     - hrs     |    - hrs    |
+| TOTAL               |          |     77 hrs      |     - hrs     |     TBD     |
 
 
 ### Server (Back End)
@@ -127,6 +136,7 @@ src
 ## Post-MVP
 
 - User's public profile: Their role, programming language, projects, their posts and comments.
+- Enable user comments on projects
 - Responsive web-design
 
 ***
