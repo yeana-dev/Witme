@@ -25,9 +25,9 @@ Witme is a platform for developers and designers to create a team for their side
 
 ### Goals
 
-- CRUD on two tables (Team Project or Study group)
-- Comments on each post
-- Categorized (filter) list by programming skill or role
+- CRUD on `Posts` table
+- User authentication/authorization
+- Categorized (filter) list by role (or programming langauge)
 
 ***
 
