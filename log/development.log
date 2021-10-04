@@ -1,0 +1,1561 @@
+  [1m[35m (200.2ms)[0m  [1m[35mCREATE DATABASE "witme_development" ENCODING = 'unicode'[0m
+  [1m[35m (82.9ms)[0m  [1m[35mCREATE DATABASE "witme_test" ENCODING = 'unicode'[0m
+  [1m[35m (4.3ms)[0m  [1m[35mCREATE DATABASE "witme_development" ENCODING = 'unicode'[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE DATABASE "witme_test" ENCODING = 'unicode'[0m
+  [1m[35m (149.0ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (6.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1398341088225762555)[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateUsers (20211003211119)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (13.6ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (2.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211003211119"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreateCategories (20211003211258)
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (9.4ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211003211258"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+Migrating to CreatePosts (20211003212216)
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+, CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (1.1ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211003212216"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (3.0ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 21:22:22.385124"], ["updated_at", "2021-10-03 21:22:22.385124"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1398341088225762555)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (2.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$12$yrrVJ7Ma6sd5l1zb81pfhuzmmv1k35cmIOmx.IYKnNRdNKpuhA7Vy"], ["created_at", "2021-10-03 22:10:12.727556"], ["updated_at", "2021-10-03 22:10:12.727556"]]
+  [1m[36mTRANSACTION (1.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Load (3.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (5.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[31mROLLBACK[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (2.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (66.8ms)[0m  [1m[35mDROP DATABASE IF EXISTS "witme_development"[0m
+  [1m[35m (40.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "witme_test"[0m
+  [1m[35m (189.9ms)[0m  [1m[35mCREATE DATABASE "witme_development" ENCODING = 'unicode'[0m
+  [1m[35m (100.4ms)[0m  [1m[35mCREATE DATABASE "witme_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.8ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE[0m
+  [1m[35m (8.1ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.4ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts" CASCADE[0m
+  [1m[35m (4.5ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.0ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (5.2ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (1.3ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (4.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211003212216)[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211003211119),
+(20211003211258);
+
+[0m
+  [1m[35m (3.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 22:11:30.365510"], ["updated_at", "2021-10-03 22:11:30.365510"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "892d53b1a23f7ed3d835e2d40aeb1dca53ad3df3"], ["created_at", "2021-10-03 22:11:30.375159"], ["updated_at", "2021-10-03 22:11:30.375159"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.7ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE[0m
+  [1m[35m (6.8ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.3ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts" CASCADE[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.7ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.4ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (1.5ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211003212216)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211003211119),
+(20211003211258);
+
+[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 22:11:30.459700"], ["updated_at", "2021-10-03 22:11:30.459700"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (3.9ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-10-03 22:11:30.502120"], ["key", "environment"]]
+  [1m[36mTRANSACTION (4.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "892d53b1a23f7ed3d835e2d40aeb1dca53ad3df3"], ["created_at", "2021-10-03 22:11:30.525642"], ["updated_at", "2021-10-03 22:11:30.525642"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.5ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (1.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$12$l9eIEVK58ZuXkKwEYZuECOp0GPybXDv5zOfUnQA5MVjpatXoxT7O2"], ["created_at", "2021-10-03 22:11:30.811370"], ["updated_at", "2021-10-03 22:11:30.811370"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.6ms)[0m  [1m[32mINSERT INTO "categories" ("category_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["category_name", "study_group"], ["created_at", "2021-10-03 22:11:30.823005"], ["updated_at", "2021-10-03 22:11:30.823005"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("category_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["category_name", "side_project"], ["created_at", "2021-10-03 22:11:30.827054"], ["updated_at", "2021-10-03 22:11:30.827054"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.9ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories"[0m
+Started POST "/users" for ::1 at 2021-10-03 17:12:29 -0500
+  [1m[35m (3.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+Completed 400 Bad Request in 23ms (ActiveRecord: 5.6ms | Allocations: 4409)
+
+
+  
+ActionController::ParameterMissing (param is missing or the value is empty: user
+Did you mean?  user
+               authentication
+               controller
+               action):
+  
+app/controllers/users_controller.rb:49:in `user_params'
+app/controllers/users_controller.rb:18:in `create'
+Started GET "/users" for ::1 at 2021-10-03 17:12:32 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (8.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 67ms (Views: 49.0ms | ActiveRecord: 16.9ms | Allocations: 3672)
+
+
+Started GET "/category" for ::1 at 2021-10-03 17:13:02 -0500
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant CategoryController):
+  
+Started GET "/category" for ::1 at 2021-10-03 17:13:21 -0500
+  
+ActionController::RoutingError (uninitialized constant CategoryController):
+  
+Started GET "/users" for ::1 at 2021-10-03 17:13:47 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 22ms (Views: 8.0ms | ActiveRecord: 5.8ms | Allocations: 6499)
+
+
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1398341088225762555)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to AddPostIdToCategory (20211003221636)
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[35m (4.7ms)[0m  [1m[35mALTER TABLE "categories" ADD "post_id" bigint[0m
+  [1m[35m (2.3ms)[0m  [1m[35mCREATE INDEX "index_categories_on_post_id" ON "categories" ("post_id")[0m
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "categories" ADD CONSTRAINT "fk_rails_3b94d5230b"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20211003221636"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1398341088225762555)[0m
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users" for ::1 at 2021-10-03 17:18:23 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:8:in `index'
+Completed 200 OK in 20ms (Views: 8.9ms | ActiveRecord: 4.4ms | Allocations: 6514)
+
+
+Started GET "/category" for ::1 at 2021-10-03 17:18:28 -0500
+  
+ActionController::RoutingError (uninitialized constant CategoryController):
+  
+Started GET "/posts" for ::1 at 2021-10-03 17:18:32 -0500
+  
+ActionController::RoutingError (uninitialized constant PostsController):
+  
+  [1m[36mCategory Load (1.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  [1m[36mPost Load (1.0ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+Started GET "/posts" for ::1 at 2021-10-03 17:24:59 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (uninitialized constant PostsController):
+  
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1398341088225762555)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.8ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1398341088225762555)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1398341088225762555)[0m
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (3.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1398341088225762555)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/posts" for ::1 at 2021-10-03 17:50:57 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 14ms (Views: 2.0ms | ActiveRecord: 2.3ms | Allocations: 3738)
+
+
+Started GET "/posts" for ::1 at 2021-10-03 17:50:58 -0500
+Processing by PostsController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (2.1ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 5ms (Views: 2.4ms | ActiveRecord: 2.1ms | Allocations: 634)
+
+
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (60.6ms)[0m  [1m[35mDROP DATABASE IF EXISTS "witme_development"[0m
+  [1m[35m (53.3ms)[0m  [1m[35mDROP DATABASE IF EXISTS "witme_test"[0m
+  [1m[35m (162.4ms)[0m  [1m[35mCREATE DATABASE "witme_development" ENCODING = 'unicode'[0m
+  [1m[35m (83.6ms)[0m  [1m[35mCREATE DATABASE "witme_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.1ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE[0m
+  [1m[35m (12.1ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "post_id" bigint)[0m
+  [1m[35m (1.2ms)[0m  [1m[35mCREATE INDEX "index_categories_on_post_id" ON "categories" ("post_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts" CASCADE[0m
+  [1m[35m (4.0ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.5ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.8ms)[0m  [1m[35mALTER TABLE "categories" ADD CONSTRAINT "fk_rails_3b94d5230b"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (1.4ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (1.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211003221636)[0m
+  [1m[35m (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211003211119),
+(20211003211258),
+(20211003212216);
+
+[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.5ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.9ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 22:51:08.501898"], ["updated_at", "2021-10-03 22:51:08.501898"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "0c918010d344b5aca27d02ff09e6227104e1a419"], ["created_at", "2021-10-03 22:51:08.511235"], ["updated_at", "2021-10-03 22:51:08.511235"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE[0m
+  [1m[35m (8.7ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "post_id" bigint)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_categories_on_post_id" ON "categories" ("post_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts" CASCADE[0m
+  [1m[35m (3.1ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (1.0ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (3.2ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (3.2ms)[0m  [1m[35mALTER TABLE "categories" ADD CONSTRAINT "fk_rails_3b94d5230b"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+[0m
+  [1m[35m (0.9ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (1.0ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.8ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211003221636)[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211003211119),
+(20211003211258),
+(20211003212216);
+
+[0m
+  [1m[35m (3.5ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.6ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-03 22:51:08.628933"], ["updated_at", "2021-10-03 22:51:08.628933"]]
+  [1m[36mTRANSACTION (0.6ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.7ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-10-03 22:51:08.635971"], ["key", "environment"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "0c918010d344b5aca27d02ff09e6227104e1a419"], ["created_at", "2021-10-03 22:51:08.641414"], ["updated_at", "2021-10-03 22:51:08.641414"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$12$NM5Tpi8lcjVSlJ5U2btwVOzU/N4s47dAgKhjVBlyGLUajGOf2wyEa"], ["created_at", "2021-10-03 22:51:08.981110"], ["updated_at", "2021-10-03 22:51:08.981110"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("category_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["category_name", "study_group"], ["created_at", "2021-10-03 22:51:08.992259"], ["updated_at", "2021-10-03 22:51:08.992259"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.3ms)[0m  [1m[32mINSERT INTO "categories" ("category_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["category_name", "side_project"], ["created_at", "2021-10-03 22:51:08.997024"], ["updated_at", "2021-10-03 22:51:08.997024"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (1.0ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Praesentium qui quisquam."], ["content", "[\"Animi ea illum. Accusamus laborum error. Unde sit cupiditate.\", \"Dolor illum dolorum. Consequatur doloremque nemo. Velit sit nulla.\", \"Quaerat sint corrupti. Natus voluptatem quaerat. Rem animi impedit.\"]"], ["skills", "JScript .NET"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.291639"], ["updated_at", "2021-10-03 22:51:09.291639"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Tenetur minima et."], ["content", "[\"Corrupti tempora dolores. Natus expedita et. Facere et praesentium.\", \"Velit doloremque sed. Harum sequi ea. Qui sunt dolorum.\", \"Modi quia quia. Numquam sed enim. Occaecati aut ad.\"]"], ["skills", "Rust"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.298588"], ["updated_at", "2021-10-03 22:51:09.298588"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Soluta illum id."], ["content", "[\"Suscipit facilis quidem. Debitis magnam eveniet. Dolorum adipisci blanditiis.\", \"In veritatis dignissimos. Sint recusandae aut. Praesentium ratione et.\", \"Est quis soluta. Placeat doloremque porro. Nostrum quod quia.\"]"], ["skills", "JAL"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.303920"], ["updated_at", "2021-10-03 22:51:09.303920"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.5ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Sint totam officiis."], ["content", "[\"Temporibus distinctio placeat. Sequi omnis provident. Quas reiciendis dolore.\", \"In nostrum est. Laboriosam deserunt perferendis. Doloremque voluptate quo.\", \"Aliquam fuga maiores. Ut sequi atque. Corporis dicta veritatis.\"]"], ["skills", "Pure"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.309338"], ["updated_at", "2021-10-03 22:51:09.309338"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Et odit repellendus."], ["content", "[\"Laboriosam eos molestiae. Odit velit neque. Tenetur in assumenda.\", \"Veniam totam maxime. Dolores dolor consectetur. Voluptatum illo rem.\", \"Repellendus mollitia autem. Voluptate dicta deserunt. Nulla qui rerum.\"]"], ["skills", "Draco"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.315460"], ["updated_at", "2021-10-03 22:51:09.315460"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Dicta magni nulla."], ["content", "[\"Inventore totam harum. Et quos ut. Qui voluptas reiciendis.\", \"Necessitatibus alias modi. Neque necessitatibus qui. Sed tempore explicabo.\", \"Deleniti et rerum. Modi voluptatibus commodi. Aliquam laborum magnam.\"]"], ["skills", "Logo"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.321476"], ["updated_at", "2021-10-03 22:51:09.321476"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Sequi delectus consectetur."], ["content", "[\"Cupiditate ipsa ut. Hic in nihil. Ipsam autem vel.\", \"Ab quia facere. Quidem est et. Provident doloremque occaecati.\", \"Dolore fugit a. Eaque blanditiis qui. Nobis ducimus nam.\"]"], ["skills", "YQL"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.326676"], ["updated_at", "2021-10-03 22:51:09.326676"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Vel enim nisi."], ["content", "[\"Praesentium facilis quia. Aspernatur et molestias. Dolor sit quo.\", \"Dolores debitis non. Ex ut qui. Occaecati rerum rem.\", \"Dolore porro rerum. Ipsum voluptas dicta. Possimus iure quod.\"]"], ["skills", "IBM BASICA"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.332699"], ["updated_at", "2021-10-03 22:51:09.332699"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Possimus voluptas dolorem."], ["content", "[\"Ex nulla corrupti. Delectus sint inventore. Optio perferendis eum.\", \"Voluptate tenetur laboriosam. Ab quia aut. Aliquam et esse.\", \"Laborum velit iure. Officia quisquam rerum. Placeat delectus unde.\"]"], ["skills", "AIMMS"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.338350"], ["updated_at", "2021-10-03 22:51:09.338350"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Laboriosam aliquam ea."], ["content", "[\"Qui expedita sed. Rerum omnis molestiae. Suscipit beatae aperiam.\", \"Delectus ratione nisi. Ratione excepturi incidunt. Corporis est ut.\", \"Architecto corrupti perferendis. Porro iure magnam. Enim vero rerum.\"]"], ["skills", "ALGOL 58"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-03 22:51:09.343722"], ["updated_at", "2021-10-03 22:51:09.343722"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.7ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories"[0m
+Started GET "/posts" for ::1 at 2021-10-03 17:51:16 -0500
+  [1m[35m (2.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by PostsController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 20ms (Views: 9.5ms | ActiveRecord: 4.7ms | Allocations: 8334)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-03 17:51:26 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+Completed 200 OK in 9ms (Views: 0.8ms | ActiveRecord: 1.0ms | Allocations: 1255)
+
+
+Started GET "/categories" for ::1 at 2021-10-03 17:51:30 -0500
+  
+ActionController::RoutingError (No route matches [GET] "/categories"):
+  
+Started GET "/categories" for ::1 at 2021-10-03 17:51:56 -0500
+Processing by CategoriesController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "category"=>{}}
+  [1m[36mCategory Load (0.6ms)[0m  [1m[34mSELECT "categories".* FROM "categories"[0m
+  ↳ app/controllers/categories_controller.rb:5:in `index'
+Completed 200 OK in 21ms (Views: 17.5ms | ActiveRecord: 6.6ms | Allocations: 2902)
+
+
+Started GET "/categories/2" for ::1 at 2021-10-03 17:52:01 -0500
+Processing by CategoriesController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"2", "category"=>{}}
+  [1m[36mCategory Load (0.2ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/categories_controller.rb:10:in `show'
+Completed 200 OK in 3ms (Views: 0.4ms | ActiveRecord: 0.2ms | Allocations: 713)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-03 17:52:06 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+Completed 200 OK in 13ms (Views: 0.4ms | ActiveRecord: 4.1ms | Allocations: 3887)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-03 17:52:58 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 4.0ms | Allocations: 7221)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:11:in `show'
+Started GET "/posts/1" for ::1 at 2021-10-03 17:53:07 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+Completed 200 OK in 31ms (Views: 17.5ms | ActiveRecord: 8.5ms | Allocations: 10263)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-03 17:53:55 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.6ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+Completed 500 Internal Server Error in 14ms (ActiveRecord: 8.2ms | Allocations: 4329)
+
+
+  
+NoMethodError (undefined method `username' for :user:Symbol):
+  
+app/controllers/posts_controller.rb:11:in `show'
+Started GET "/posts/1" for ::1 at 2021-10-03 17:54:03 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+Completed 200 OK in 27ms (Views: 13.5ms | ActiveRecord: 13.5ms | Allocations: 8753)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-03 17:54:11 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+Completed 200 OK in 10ms (Views: 0.9ms | ActiveRecord: 4.0ms | Allocations: 3911)
+
+
+Started GET "/posts/1" for ::1 at 2021-10-03 17:54:23 -0500
+Processing by PostsController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts" WHERE "posts"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:10:in `show'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:11:in `show'
+Completed 200 OK in 21ms (Views: 9.1ms | ActiveRecord: 6.2ms | Allocations: 8742)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:03:34 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 12ms (Views: 9.4ms | ActiveRecord: 22.1ms | Allocations: 3220)
+
+
+Started GET "/users/1" for ::1 at 2021-10-03 18:03:36 -0500
+Processing by UsersController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Completed 200 OK in 7ms (Views: 1.4ms | ActiveRecord: 1.5ms | Allocations: 812)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:03:38 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 2ms (Views: 1.4ms | ActiveRecord: 0.2ms | Allocations: 758)
+
+
+Started GET "/users/1" for ::1 at 2021-10-03 18:03:39 -0500
+Processing by UsersController#show as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "id"=>"1", "user"=>{}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Completed 200 OK in 4ms (Views: 0.4ms | ActiveRecord: 0.4ms | Allocations: 650)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1398341088225762555)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.4ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_advisory_unlock(1398341088225762555)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started GET "/users" for ::1 at 2021-10-03 18:04:12 -0500
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 22ms (Views: 8.1ms | ActiveRecord: 5.3ms | Allocations: 6515)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:04:45 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+Completed 500 Internal Server Error in 4ms (ActiveRecord: 2.3ms | Allocations: 755)
+
+
+  
+NoMethodError (undefined method `attributes' for nil:NilClass):
+  
+app/controllers/users_controller.rb:8:in `index'
+Started GET "/users" for ::1 at 2021-10-03 18:05:10 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 1.9ms | Allocations: 698)
+
+
+  
+NoMethodError (undefined method `attributes' for nil:NilClass):
+  
+app/controllers/users_controller.rb:8:in `index'
+Started GET "/users" for ::1 at 2021-10-03 18:05:31 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (2.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 2.4ms | Allocations: 5186)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">]>):
+  
+app/controllers/users_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 18:05:53 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 15ms (ActiveRecord: 1.4ms | Allocations: 4962)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">]>):
+  
+app/controllers/users_controller.rb:8:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 18:06:01 -0500
+Processing by UsersController#index as */*
+  Parameters: {"authentication"=>{"username"=>"Chickadee", "password"=>"[FILTERED]"}, "user"=>{}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 13ms (Views: 7.3ms | ActiveRecord: 9.7ms | Allocations: 3180)
+
+
+Started PUT "/users" for ::1 at 2021-10-03 18:06:45 -0500
+  
+ActionController::RoutingError (No route matches [PUT] "/users"):
+  
+Started PUT "/users" for ::1 at 2021-10-03 18:08:56 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+ActionController::RoutingError (No route matches [PUT] "/users"):
+  
+Started POST "/users" for ::1 at 2021-10-03 18:09:02 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (12.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (6.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.8ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test"], ["email", "test@test.com"], ["password_digest", "$2a$12$Kmk7uwhdWPfRGmcPj1o2yug/nv7VCKLaYkmzWHScINyhaKMdjpvJ2"], ["created_at", "2021-10-03 23:09:02.498576"], ["updated_at", "2021-10-03 23:09:02.498576"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (1.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 300ms (ActiveRecord: 26.4ms | Allocations: 12346)
+
+
+  
+NoMethodError (undefined method `encdoe' for #<UsersController:0x00000000004ec0>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2021-10-03 18:09:32 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (2.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (15.5ms)[0m  [1m[31mROLLBACK[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 422 Unprocessable Entity in 652ms (Views: 361.1ms | ActiveRecord: 28.9ms | Allocations: 344149)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:09:43 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.3ms | Allocations: 1016)
+
+
+Started DELETE "/users/2" for ::1 at 2021-10-03 18:09:52 -0500
+Processing by UsersController#destroy as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}, "id"=>"2"}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[36mUser Destroy (2.3ms)[0m  [1m[31mDELETE FROM "users" WHERE "users"."id" = $1[0m  [["id", 2]]
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+  [1m[36mTRANSACTION (3.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:40:in `destroy'
+Completed 204 No Content in 13ms (ActiveRecord: 7.5ms | Allocations: 2073)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:09:55 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 4ms (Views: 3.7ms | ActiveRecord: 0.3ms | Allocations: 758)
+
+
+Started POST "/users" for ::1 at 2021-10-03 18:09:58 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test"], ["email", "test@test.com"], ["password_digest", "$2a$12$dvwCU6BmJfDzHprzstUCpel.HBjLBu5A3AYTQUaHHDgkobzb/WVeW"], ["created_at", "2021-10-03 23:09:59.096704"], ["updated_at", "2021-10-03 23:09:59.096704"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 231ms (ActiveRecord: 1.8ms | Allocations: 4996)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000005cf8>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started GET "/users" for ::1 at 2021-10-03 18:10:06 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test", "email"=>"test@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 4ms (Views: 2.0ms | ActiveRecord: 1.8ms | Allocations: 860)
+
+
+Started POST "/users" for ::1 at 2021-10-03 18:10:15 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test1"], ["email", "test1@test.com"], ["password_digest", "$2a$12$Ich0r3iEfv8T.7jriHbqj.SDQGsNF8.nbrL4j8UMYZLHEzVg3THwC"], ["created_at", "2021-10-03 23:10:16.195838"], ["updated_at", "2021-10-03 23:10:16.195838"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 232ms (ActiveRecord: 1.4ms | Allocations: 4917)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000005d98>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started GET "/users" for ::1 at 2021-10-03 18:15:03 -0500
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 24ms (Views: 8.4ms | ActiveRecord: 5.4ms | Allocations: 7281)
+
+
+Started POST "/users" for ::1 at 2021-10-03 18:15:15 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test2", "email"=>"test2@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test2"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test2@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test2"], ["email", "test2@test.com"], ["password_digest", "$2a$12$XEYJwH4Uyl0Uey/mtZOy9.3EMbObm/0BdSWzfof3rAwumeOT91rQS"], ["created_at", "2021-10-03 23:15:15.938966"], ["updated_at", "2021-10-03 23:15:15.938966"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.7ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 237ms (ActiveRecord: 2.2ms | Allocations: 6267)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000004ec0>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started GET "/users" for ::1 at 2021-10-03 18:21:22 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test2", "email"=>"test2@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 25ms (Views: 9.7ms | ActiveRecord: 5.6ms | Allocations: 7384)
+
+
+Started POST "/users" for ::1 at 2021-10-03 18:21:32 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.6ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test3"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test3@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (1.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test3"], ["email", "test3@test.com"], ["password_digest", "$2a$12$sMnxE/dzDut7h1qHPBEjvOH4wN.H7kwvYbebQOeAJ64kXTfGVdSeW"], ["created_at", "2021-10-03 23:21:32.858809"], ["updated_at", "2021-10-03 23:21:32.858809"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 236ms (ActiveRecord: 3.5ms | Allocations: 6272)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000004f10>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started GET "/posts" for ::1 at 2021-10-03 18:25:42 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (8.9ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 35ms (ActiveRecord: 16.9ms | Allocations: 7415)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:25:53 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 47ms (Views: 40.1ms | ActiveRecord: 8.7ms | Allocations: 17725)
+
+
+Started GET "/posts" for ::1 at 2021-10-03 18:26:17 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 41ms (ActiveRecord: 12.2ms | Allocations: 10014)
+
+
+  
+NoMethodError (undefined method `serializable_hash' for "admin":String):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:26:30 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 16ms (ActiveRecord: 5.6ms | Allocations: 7211)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:26:36 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.2ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 4.3ms | Allocations: 7221)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:27:11 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 24ms (ActiveRecord: 7.8ms | Allocations: 7217)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/users" for ::1 at 2021-10-03 18:27:41 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (2.6ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 31ms (Views: 18.0ms | ActiveRecord: 10.3ms | Allocations: 4053)
+
+
+Started GET "/posts" for ::1 at 2021-10-03 18:27:44 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 6.2ms | Allocations: 7188)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:28:00 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.7ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 16ms (Views: 12.7ms | ActiveRecord: 4.5ms | Allocations: 4951)
+
+
+Started GET "/posts" for ::1 at 2021-10-03 18:28:14 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 49ms (Views: 41.5ms | ActiveRecord: 8.6ms | Allocations: 16331)
+
+
+Started GET "/posts" for ::1 at 2021-10-03 18:28:36 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 30ms (ActiveRecord: 8.8ms | Allocations: 10009)
+
+
+  
+NoMethodError (undefined method `serializable_hash' for "admin":String):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:28:44 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 4.1ms | Allocations: 7201)
+
+
+  
+NoMethodError (undefined method `users' for #<Post id: 1, title: "Praesentium qui quisquam.", content: "[\"Animi ea illum. Accusamus laborum error. Unde si...", skills: "JScript .NET", user_id: 1, category_id: 1, created_at: "2021-10-03 22:51:09.291639000 +0000", updated_at: "2021-10-03 22:51:09.291639000 +0000">
+Did you mean?  user
+               user=):
+  
+app/controllers/posts_controller.rb:5:in `index'
+Started GET "/posts" for ::1 at 2021-10-03 18:28:54 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.3ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.1ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 48ms (Views: 38.6ms | ActiveRecord: 11.2ms | Allocations: 16385)
+
+
+Started GET "/posts" for ::1 at 2021-10-03 18:29:33 -0500
+Processing by PostsController#index as */*
+  Parameters: {"user"=>{"username"=>"test3", "email"=>"test3@test.com", "password"=>"[FILTERED]"}, "post"=>{}}
+  [1m[36mPost Load (0.4ms)[0m  [1m[34mSELECT "posts".* FROM "posts"[0m
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCategory Load (11.4ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+  [1m[36mCACHE Category Load (0.0ms)[0m  [1m[34mSELECT "categories".* FROM "categories" WHERE "categories"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/posts_controller.rb:5:in `index'
+Completed 200 OK in 128ms (Views: 98.6ms | ActiveRecord: 33.6ms | Allocations: 26759)
+
+
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT pg_try_advisory_lock(1398341088225762555)[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mActiveRecord::InternalMetadata Load (4.9ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[35m (0.3ms)[0m  [1m[34mSELECT pg_advisory_unlock(1398341088225762555)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Started POST "/posts" for ::1 at 2021-10-03 18:33:13 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  
+AbstractController::ActionNotFound (The action 'create' could not be found for PostsController
+Did you mean?  index
+               show):
+  
+actionpack (6.1.4.1) lib/abstract_controller/base.rb:160:in `process'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.4.1) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.4.1) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.4.1) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:40:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.4.1) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.4.1) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.4.1) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.4.1) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.4.1) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.4.1) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.4.1) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+rack-cors (1.1.1) lib/rack/cors.rb:100:in `call'
+railties (6.1.4.1) lib/rails/engine.rb:539:in `call'
+puma (5.5.0) lib/puma/configuration.rb:249:in `call'
+puma (5.5.0) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.5.0) lib/puma/thread_pool.rb:340:in `with_force_shutdown'
+puma (5.5.0) lib/puma/request.rb:76:in `handle_request'
+puma (5.5.0) lib/puma/server.rb:447:in `process_client'
+puma (5.5.0) lib/puma/thread_pool.rb:147:in `block in spawn_thread'
+Started POST "/users" for ::1 at 2021-10-03 18:33:22 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test4", "email"=>"test4@test.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.9ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test4"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test4@test.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (4.2ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test4"], ["email", "test4@test.com"], ["password_digest", "$2a$12$Mmmq.sPgPCjfMtmiFD3qw.2d0svpU9tGdppSHDtDF6poSZcQO3.um"], ["created_at", "2021-10-03 23:33:23.152677"], ["updated_at", "2021-10-03 23:33:23.152677"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 269ms (ActiveRecord: 10.5ms | Allocations: 12340)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000004f10>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2021-10-03 18:33:39 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test5", "email"=>"test5@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test5"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test5@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.3ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test5"], ["email", "test5@email.com"], ["password_digest", "$2a$12$UMhszYqkSKAotnrTtTNv/.1BsZ/8rdOLXCE06h79thP3.azhFAA8W"], ["created_at", "2021-10-03 23:33:39.930879"], ["updated_at", "2021-10-03 23:33:39.930879"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 226ms (ActiveRecord: 1.9ms | Allocations: 4944)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000004fd8>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2021-10-03 18:35:53 -0500
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test6", "email"=>"test6@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test6"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test6@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test6"], ["email", "test6@email.com"], ["password_digest", "$2a$12$zfAUZolWtmQ3CCWgRKyJvuUaO8ig4QUX.iZfd/aqlt47iFcWNi9A2"], ["created_at", "2021-10-03 23:35:53.833341"], ["updated_at", "2021-10-03 23:35:53.833341"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 255ms (ActiveRecord: 8.7ms | Allocations: 12334)
+
+
+  
+NoMethodError (undefined method `encode' for #<UsersController:0x00000000004e70>):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2021-10-03 18:40:01 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test7", "email"=>"test7@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test7"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.3ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test7@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test7"], ["email", "test7@email.com"], ["password_digest", "$2a$12$R57lz2i1aYAwF01d5yczVebhcfVLfVJKbovKFUd2Ihvg36FFbMFEi"], ["created_at", "2021-10-03 23:40:01.658783"], ["updated_at", "2021-10-03 23:40:01.658783"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 500 Internal Server Error in 242ms (ActiveRecord: 9.1ms | Allocations: 6500)
+
+
+  
+ArgumentError (wrong number of arguments (given 1, expected 2..4)):
+  
+app/controllers/users_controller.rb:19:in `create'
+Started POST "/users" for ::1 at 2021-10-03 18:43:56 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.7ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test8"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test8@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mUser Create (0.5ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test8"], ["email", "test8@email.com"], ["password_digest", "$2a$12$cqkqbe2mJ3rYMhcjtRQZbuHd7cg.RhsJOeQbCse1BIzzMnyTZ7UFy"], ["created_at", "2021-10-03 23:43:57.088121"], ["updated_at", "2021-10-03 23:43:57.088121"]]
+  ↳ app/controllers/users_controller.rb:18:in `create'
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:18:in `create'
+Completed 201 Created in 259ms (Views: 0.6ms | ActiveRecord: 16.5ms | Allocations: 6855)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:44:07 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.4ms | Allocations: 1815)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:44:34 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 28ms (ActiveRecord: 0.0ms | Allocations: 6262)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">, #<User id: 3, username: "test", email: "test@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:09:59.096704000 +0000", updated_at: "2021-10-03 23:09:59.096704000 +0000">, #<User id: 4, username: "test1", email: "test1@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:10:16.195838000 +0000", updated_at: "2021-10-03 23:10:16.195838000 +0000">, #<User id: 5, username: "test2", email: "test2@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:15:15.938966000 +0000", updated_at: "2021-10-03 23:15:15.938966000 +0000">, #<User id: 6, username: "test3", email: "test3@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:21:32.858809000 +0000", updated_at: "2021-10-03 23:21:32.858809000 +0000">, #<User id: 7, username: "test4", email: "test4@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:23.152677000 +0000", updated_at: "2021-10-03 23:33:23.152677000 +0000">, #<User id: 8, username: "test5", email: "test5@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:39.930879000 +0000", updated_at: "2021-10-03 23:33:39.930879000 +0000">, #<User id: 9, username: "test6", email: "test6@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:35:53.833341000 +0000", updated_at: "2021-10-03 23:35:53.833341000 +0000">, #<User id: 10, username: "test7", email: "test7@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:40:01.658783000 +0000", updated_at: "2021-10-03 23:40:01.658783000 +0000">, #<User id: 11, username: "test8", email: "test8@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:43:57.088121000 +0000", updated_at: "2021-10-03 23:43:57.088121000 +0000">]>):
+  
+app/controllers/users_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 18:44:36 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.7ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 22ms (ActiveRecord: 0.0ms | Allocations: 3232)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">, #<User id: 3, username: "test", email: "test@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:09:59.096704000 +0000", updated_at: "2021-10-03 23:09:59.096704000 +0000">, #<User id: 4, username: "test1", email: "test1@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:10:16.195838000 +0000", updated_at: "2021-10-03 23:10:16.195838000 +0000">, #<User id: 5, username: "test2", email: "test2@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:15:15.938966000 +0000", updated_at: "2021-10-03 23:15:15.938966000 +0000">, #<User id: 6, username: "test3", email: "test3@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:21:32.858809000 +0000", updated_at: "2021-10-03 23:21:32.858809000 +0000">, #<User id: 7, username: "test4", email: "test4@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:23.152677000 +0000", updated_at: "2021-10-03 23:33:23.152677000 +0000">, #<User id: 8, username: "test5", email: "test5@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:39.930879000 +0000", updated_at: "2021-10-03 23:33:39.930879000 +0000">, #<User id: 9, username: "test6", email: "test6@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:35:53.833341000 +0000", updated_at: "2021-10-03 23:35:53.833341000 +0000">, #<User id: 10, username: "test7", email: "test7@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:40:01.658783000 +0000", updated_at: "2021-10-03 23:40:01.658783000 +0000">, #<User id: 11, username: "test8", email: "test8@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:43:57.088121000 +0000", updated_at: "2021-10-03 23:43:57.088121000 +0000">]>):
+  
+app/controllers/users_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 18:44:50 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (7.2ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 31ms (Views: 16.7ms | ActiveRecord: 13.2ms | Allocations: 4568)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:45:16 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 1ms (ActiveRecord: 0.0ms | Allocations: 299)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1..2)):
+  
+app/controllers/users_controller.rb:7:in `index'
+Started GET "/users" for ::1 at 2021-10-03 18:45:19 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+Completed 500 Internal Server Error in 0ms (ActiveRecord: 0.0ms | Allocations: 131)
+
+
+  
+ArgumentError (wrong number of arguments (given 0, expected 1..2)):
+  
+app/controllers/users_controller.rb:7:in `index'
+Started GET "/users" for ::1 at 2021-10-03 18:45:24 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 23ms (ActiveRecord: 0.0ms | Allocations: 6149)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">, #<User id: 3, username: "test", email: "test@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:09:59.096704000 +0000", updated_at: "2021-10-03 23:09:59.096704000 +0000">, #<User id: 4, username: "test1", email: "test1@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:10:16.195838000 +0000", updated_at: "2021-10-03 23:10:16.195838000 +0000">, #<User id: 5, username: "test2", email: "test2@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:15:15.938966000 +0000", updated_at: "2021-10-03 23:15:15.938966000 +0000">, #<User id: 6, username: "test3", email: "test3@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:21:32.858809000 +0000", updated_at: "2021-10-03 23:21:32.858809000 +0000">, #<User id: 7, username: "test4", email: "test4@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:23.152677000 +0000", updated_at: "2021-10-03 23:33:23.152677000 +0000">, #<User id: 8, username: "test5", email: "test5@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:39.930879000 +0000", updated_at: "2021-10-03 23:33:39.930879000 +0000">, #<User id: 9, username: "test6", email: "test6@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:35:53.833341000 +0000", updated_at: "2021-10-03 23:35:53.833341000 +0000">, #<User id: 10, username: "test7", email: "test7@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:40:01.658783000 +0000", updated_at: "2021-10-03 23:40:01.658783000 +0000">, #<User id: 11, username: "test8", email: "test8@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:43:57.088121000 +0000", updated_at: "2021-10-03 23:43:57.088121000 +0000">]>):
+  
+app/controllers/users_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users/3" for ::1 at 2021-10-03 18:46:05 -0500
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}, "id"=>"3"}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 3], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:49:in `set_user'
+Completed 200 OK in 15ms (Views: 0.6ms | ActiveRecord: 4.8ms | Allocations: 3712)
+
+
+Started GET "/users" for ::1 at 2021-10-03 18:46:25 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.2ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 19ms (ActiveRecord: 0.0ms | Allocations: 6132)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">, #<User id: 3, username: "test", email: "test@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:09:59.096704000 +0000", updated_at: "2021-10-03 23:09:59.096704000 +0000">, #<User id: 4, username: "test1", email: "test1@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:10:16.195838000 +0000", updated_at: "2021-10-03 23:10:16.195838000 +0000">, #<User id: 5, username: "test2", email: "test2@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:15:15.938966000 +0000", updated_at: "2021-10-03 23:15:15.938966000 +0000">, #<User id: 6, username: "test3", email: "test3@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:21:32.858809000 +0000", updated_at: "2021-10-03 23:21:32.858809000 +0000">, #<User id: 7, username: "test4", email: "test4@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:23.152677000 +0000", updated_at: "2021-10-03 23:33:23.152677000 +0000">, #<User id: 8, username: "test5", email: "test5@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:39.930879000 +0000", updated_at: "2021-10-03 23:33:39.930879000 +0000">, #<User id: 9, username: "test6", email: "test6@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:35:53.833341000 +0000", updated_at: "2021-10-03 23:35:53.833341000 +0000">, #<User id: 10, username: "test7", email: "test7@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:40:01.658783000 +0000", updated_at: "2021-10-03 23:40:01.658783000 +0000">, #<User id: 11, username: "test8", email: "test8@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:43:57.088121000 +0000", updated_at: "2021-10-03 23:43:57.088121000 +0000">]>):
+  
+app/controllers/users_controller.rb:8:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 18:46:34 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms | Allocations: 6130)
+
+
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-03 22:51:08.981110000 +0000", updated_at: "2021-10-03 22:51:08.981110000 +0000">, #<User id: 3, username: "test", email: "test@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:09:59.096704000 +0000", updated_at: "2021-10-03 23:09:59.096704000 +0000">, #<User id: 4, username: "test1", email: "test1@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:10:16.195838000 +0000", updated_at: "2021-10-03 23:10:16.195838000 +0000">, #<User id: 5, username: "test2", email: "test2@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:15:15.938966000 +0000", updated_at: "2021-10-03 23:15:15.938966000 +0000">, #<User id: 6, username: "test3", email: "test3@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:21:32.858809000 +0000", updated_at: "2021-10-03 23:21:32.858809000 +0000">, #<User id: 7, username: "test4", email: "test4@test.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:23.152677000 +0000", updated_at: "2021-10-03 23:33:23.152677000 +0000">, #<User id: 8, username: "test5", email: "test5@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:33:39.930879000 +0000", updated_at: "2021-10-03 23:33:39.930879000 +0000">, #<User id: 9, username: "test6", email: "test6@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:35:53.833341000 +0000", updated_at: "2021-10-03 23:35:53.833341000 +0000">, #<User id: 10, username: "test7", email: "test7@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:40:01.658783000 +0000", updated_at: "2021-10-03 23:40:01.658783000 +0000">, #<User id: 11, username: "test8", email: "test8@email.com", password_digest: [FILTERED], created_at: "2021-10-03 23:43:57.088121000 +0000", updated_at: "2021-10-03 23:43:57.088121000 +0000">]>):
+  
+app/controllers/users_controller.rb:8:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 18:47:01 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.9ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 17ms (Views: 12.2ms | ActiveRecord: 4.3ms | Allocations: 4568)
+
+
+  [1m[35m (2.6ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata"."value" FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1[0m  [["key", "environment"]]
+  [1m[35m (54.2ms)[0m  [1m[35mDROP DATABASE IF EXISTS "witme_development"[0m
+  [1m[35m (41.1ms)[0m  [1m[35mDROP DATABASE IF EXISTS "witme_test"[0m
+  [1m[35m (133.4ms)[0m  [1m[35mCREATE DATABASE "witme_development" ENCODING = 'unicode'[0m
+  [1m[35m (77.4ms)[0m  [1m[35mCREATE DATABASE "witme_test" ENCODING = 'unicode'[0m
+  [1m[35mSQL (1.2ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.6ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE[0m
+  [1m[35m (9.3ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "post_id" bigint)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_categories_on_post_id" ON "categories" ("post_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts" CASCADE[0m
+  [1m[35m (2.5ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.8ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (2.9ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.8ms)[0m  [1m[35mALTER TABLE "categories" ADD CONSTRAINT "fk_rails_3b94d5230b"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (0.8ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (2.2ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211003221636)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211003211119),
+(20211003211258),
+(20211003212216);
+
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.3ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (1.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-04 01:15:03.537801"], ["updated_at", "2021-10-04 01:15:03.537801"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mActiveRecord::InternalMetadata Load (0.7ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "0c918010d344b5aca27d02ff09e6227104e1a419"], ["created_at", "2021-10-04 01:15:03.546451"], ["updated_at", "2021-10-04 01:15:03.546451"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35mSQL (0.3ms)[0m  [1m[35mCREATE EXTENSION IF NOT EXISTS "plpgsql"[0m
+  [1m[35m (0.2ms)[0m  [1m[35mDROP TABLE IF EXISTS "categories" CASCADE[0m
+  [1m[35m (6.4ms)[0m  [1m[35mCREATE TABLE "categories" ("id" bigserial primary key, "category_name" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL, "post_id" bigint)[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_categories_on_post_id" ON "categories" ("post_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "posts" CASCADE[0m
+  [1m[35m (2.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying, "content" text, "skills" character varying, "user_id" bigint NOT NULL, "category_id" bigint NOT NULL, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (0.9ms)[0m  [1m[35mCREATE INDEX "index_posts_on_category_id" ON "posts" ("category_id")[0m
+  [1m[35m (0.7ms)[0m  [1m[35mCREATE INDEX "index_posts_on_user_id" ON "posts" ("user_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mDROP TABLE IF EXISTS "users" CASCADE[0m
+  [1m[35m (2.4ms)[0m  [1m[35mCREATE TABLE "users" ("id" bigserial primary key, "username" character varying, "email" character varying, "password_digest" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[35m (2.0ms)[0m  [1m[35mALTER TABLE "categories" ADD CONSTRAINT "fk_rails_3b94d5230b"
+FOREIGN KEY ("post_id")
+  REFERENCES "posts" ("id")
+[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_9b1b26f040"
+FOREIGN KEY ("category_id")
+  REFERENCES "categories" ("id")
+[0m
+  [1m[35m (1.2ms)[0m  [1m[35mALTER TABLE "posts" ADD CONSTRAINT "fk_rails_5b5ddfd518"
+FOREIGN KEY ("user_id")
+  REFERENCES "users" ("id")
+[0m
+  [1m[35m (3.9ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL PRIMARY KEY)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.7ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES (20211003221636)[0m
+  [1m[35m (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" (version) VALUES
+(20211003211119),
+(20211003211258),
+(20211003212216);
+
+[0m
+  [1m[35m (2.0ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" character varying NOT NULL PRIMARY KEY, "value" character varying, "created_at" timestamp(6) NOT NULL, "updated_at" timestamp(6) NOT NULL)[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.5ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-10-04 01:15:03.648806"], ["updated_at", "2021-10-04 01:15:03.648806"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Update (0.3ms)[0m  [1m[33mUPDATE "ar_internal_metadata" SET "value" = $1, "updated_at" = $2 WHERE "ar_internal_metadata"."key" = $3[0m  [["value", "test"], ["updated_at", "2021-10-04 01:15:03.654605"], ["key", "environment"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "schema_sha1"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.2ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "key"[0m  [["key", "schema_sha1"], ["value", "0c918010d344b5aca27d02ff09e6227104e1a419"], ["created_at", "2021-10-04 01:15:03.659743"], ["updated_at", "2021-10-04 01:15:03.659743"]]
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mUser Exists? (0.8ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "admin@admin.com"], ["LIMIT", 1]]
+  [1m[36mUser Create (0.6ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "admin"], ["email", "admin@admin.com"], ["password_digest", "$2a$12$SAurenQ2pUZWLuMMB7l3T.bCBInqDgnqtnlC/8Gvlgu.G.P1uLYum"], ["created_at", "2021-10-04 01:15:03.924715"], ["updated_at", "2021-10-04 01:15:03.924715"]]
+  [1m[36mTRANSACTION (0.8ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.8ms)[0m  [1m[32mINSERT INTO "categories" ("category_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["category_name", "study_group"], ["created_at", "2021-10-04 01:15:03.937186"], ["updated_at", "2021-10-04 01:15:03.937186"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mCategory Create (0.2ms)[0m  [1m[32mINSERT INTO "categories" ("category_name", "created_at", "updated_at") VALUES ($1, $2, $3) RETURNING "id"[0m  [["category_name", "side_project"], ["created_at", "2021-10-04 01:15:03.941807"], ["updated_at", "2021-10-04 01:15:03.941807"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (6.2ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Voluptatem nesciunt deleniti."], ["content", "[\"Voluptas delectus officia. Ad velit molestiae. Dicta inventore est.\", \"Velit voluptas quo. Animi atque occaecati. Tempora maxime porro.\", \"Eligendi ut vero. Quae cum sapiente. Eos rerum id.\"]"], ["skills", "Babbage"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.289372"], ["updated_at", "2021-10-04 01:15:04.289372"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.5ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Ut sed aliquid."], ["content", "[\"Sint atque assumenda. Dolor cum doloribus. Iure suscipit nisi.\", \"Temporibus ut vel. Reprehenderit consequatur modi. Ullam deserunt aspernatur.\", \"Atque doloremque et. Omnis ab adipisci. Qui numquam quam.\"]"], ["skills", "OPS5"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.301245"], ["updated_at", "2021-10-04 01:15:04.301245"]]
+  [1m[36mTRANSACTION (0.5ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Tenetur labore sunt."], ["content", "[\"Sint odio vel. Aut vel nam. In asperiores architecto.\", \"Quaerat error facere. Veniam voluptatem sint. Dolorem vel ut.\", \"Consequatur sunt aspernatur. Tempore repellat vitae. Et doloremque aut.\"]"], ["skills", "Jython"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.307340"], ["updated_at", "2021-10-04 01:15:04.307340"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Et voluptates possimus."], ["content", "[\"Nihil ullam non. Dicta ut dolores. Repudiandae earum soluta.\", \"Qui a molestias. Possimus esse accusamus. Debitis quod fugit.\", \"Tempore labore voluptate. Nihil nemo fuga. Quo ducimus consequatur.\"]"], ["skills", "TypeScript"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.313349"], ["updated_at", "2021-10-04 01:15:04.313349"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.4ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Natus nihil hic."], ["content", "[\"Aliquam eius et. Ut soluta esse. Ullam quia voluptas.\", \"Voluptatem odit necessitatibus. Sint debitis eum. Ut exercitationem natus.\", \"Enim dignissimos ipsum. Aut ea magnam. Assumenda consequatur molestiae.\"]"], ["skills", "Strongtalk"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.318723"], ["updated_at", "2021-10-04 01:15:04.318723"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Aut consequatur eos."], ["content", "[\"Aut et a. Sint praesentium inventore. Quod est in.\", \"Aspernatur ut consectetur. Est totam nobis. Dolores at quisquam.\", \"Fugit ut nisi. Ut dolores nam. Sint iusto qui.\"]"], ["skills", "ALGOL 60"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.324977"], ["updated_at", "2021-10-04 01:15:04.324977"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Autem perferendis quae."], ["content", "[\"Eos laboriosam voluptatem. Laboriosam totam distinctio. Eligendi et velit.\", \"Corrupti distinctio eligendi. Dolores sed eligendi. Soluta fuga velit.\", \"Quidem officia ipsum. Perspiciatis rerum iure. Consequuntur et eligendi.\"]"], ["skills", "ECMAScript"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.330659"], ["updated_at", "2021-10-04 01:15:04.330659"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Quod aut accusantium."], ["content", "[\"Veritatis alias et. Odit sapiente beatae. Voluptatem quis suscipit.\", \"Provident et accusantium. Optio porro quaerat. Aut et at.\", \"Quia quis quis. Est nostrum sit. Architecto pariatur in.\"]"], ["skills", "TPU"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.336487"], ["updated_at", "2021-10-04 01:15:04.336487"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.5ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "A autem velit."], ["content", "[\"Expedita totam libero. In voluptatum sunt. Dolorem reprehenderit esse.\", \"Voluptas neque odit. Sed dolores minus. Odit vitae sequi.\", \"Placeat odit a. Rerum voluptatibus explicabo. Ut accusamus deleniti.\"]"], ["skills", "Gosu"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.342337"], ["updated_at", "2021-10-04 01:15:04.342337"]]
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  [1m[36mTRANSACTION (0.2ms)[0m  [1m[35mBEGIN[0m
+  [1m[36mPost Create (0.3ms)[0m  [1m[32mINSERT INTO "posts" ("title", "content", "skills", "user_id", "category_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING "id"[0m  [["title", "Minus perferendis dolor."], ["content", "[\"Voluptate rerum facere. Debitis magni molestiae. Laudantium rerum minus.\", \"Ab asperiores et. Officia impedit esse. Qui sunt non.\", \"Consequatur porro voluptatem. Incidunt eius repellendus. Et voluptas est.\"]"], ["skills", "PL/B"], ["user_id", 1], ["category_id", 1], ["created_at", "2021-10-04 01:15:04.348163"], ["updated_at", "2021-10-04 01:15:04.348163"]]
+  [1m[36mTRANSACTION (0.3ms)[0m  [1m[35mCOMMIT[0m
+  [1m[35m (1.3ms)[0m  [1m[34mSELECT COUNT(*) FROM "users"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "posts"[0m
+  [1m[35m (0.2ms)[0m  [1m[34mSELECT COUNT(*) FROM "categories"[0m
+Started GET "/users" for ::1 at 2021-10-03 20:15:13 -0500
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 21ms (Views: 7.0ms | ActiveRecord: 3.8ms | Allocations: 7074)
+
+
+Started GET "/users/1" for ::1 at 2021-10-03 20:15:51 -0500
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"username"=>"test8", "email"=>"test8@email.com", "password"=>"[FILTERED]"}, "id"=>"1"}
+  [1m[36mUser Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:49:in `set_user'
+Completed 200 OK in 34ms (Views: 0.8ms | ActiveRecord: 6.1ms | Allocations: 7544)
+
+
+Started POST "/users" for ::1 at 2021-10-03 20:16:28 -0500
+Processing by UsersController#create as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[35mBEGIN[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.4ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "test1"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Exists? (0.2ms)[0m  [1m[34mSELECT 1 AS one FROM "users" WHERE "users"."email" = $1 LIMIT $2[0m  [["email", "test1@email.com"], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mUser Create (0.4ms)[0m  [1m[32mINSERT INTO "users" ("username", "email", "password_digest", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5) RETURNING "id"[0m  [["username", "test1"], ["email", "test1@email.com"], ["password_digest", "$2a$12$zkFBDKCd9B0Q6Xtmqpw1m.KvhRdK5Ipp3vrsrcLReaZusfnBe345m"], ["created_at", "2021-10-04 01:16:28.338835"], ["updated_at", "2021-10-04 01:16:28.338835"]]
+  ↳ app/controllers/users_controller.rb:21:in `create'
+  [1m[36mTRANSACTION (0.4ms)[0m  [1m[35mCOMMIT[0m
+  ↳ app/controllers/users_controller.rb:21:in `create'
+Completed 201 Created in 227ms (Views: 0.3ms | ActiveRecord: 1.5ms | Allocations: 4492)
+
+
+Started GET "/users/2" for ::1 at 2021-10-03 20:16:33 -0500
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@email.com", "password"=>"[FILTERED]"}, "id"=>"2"}
+  [1m[36mUser Load (0.5ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:49:in `set_user'
+Completed 200 OK in 40ms (Views: 0.6ms | ActiveRecord: 0.5ms | Allocations: 681)
+
+
+Started GET "/users/2" for ::1 at 2021-10-03 20:16:53 -0500
+Processing by UsersController#show as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@email.com", "password"=>"[FILTERED]"}, "id"=>"2"}
+  [1m[36mUser Load (0.8ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/users_controller.rb:46:in `set_user'
+Completed 200 OK in 16ms (Views: 0.4ms | ActiveRecord: 5.1ms | Allocations: 3659)
+
+
+Started GET "/users" for ::1 at 2021-10-03 20:17:18 -0500
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Completed 500 Internal Server Error in 36ms (ActiveRecord: 0.0ms | Allocations: 5649)
+
+
+  [1m[36mCACHE User Load (0.4ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+  
+NoMethodError (undefined method `attributes' for #<ActiveRecord::Relation [#<User id: 1, username: "admin", email: "admin@admin.com", password_digest: [FILTERED], created_at: "2021-10-04 01:15:03.924715000 +0000", updated_at: "2021-10-04 01:15:03.924715000 +0000">, #<User id: 2, username: "test1", email: "test1@email.com", password_digest: [FILTERED], created_at: "2021-10-04 01:16:28.338835000 +0000", updated_at: "2021-10-04 01:16:28.338835000 +0000">]>):
+  
+app/controllers/users_controller.rb:7:in `index'
+  [1m[36mCACHE User Load (0.0ms)[0m  [1m[34mSELECT "users".* FROM "users" /* loading for inspect */ LIMIT $1[0m  [["LIMIT", 11]]
+Started GET "/users" for ::1 at 2021-10-03 21:02:12 -0500
+  [1m[35m (0.8ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by UsersController#index as */*
+  Parameters: {"user"=>{"username"=>"test1", "email"=>"test1@email.com", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.4ms)[0m  [1m[34mSELECT "users".* FROM "users"[0m
+  ↳ app/controllers/users_controller.rb:7:in `index'
+Completed 200 OK in 33ms (Views: 9.1ms | ActiveRecord: 7.2ms | Allocations: 7177)
+
+
+Started POST "/auth/login" for ::1 at 2021-10-03 21:03:04 -0500
+Processing by AuthenticationController#login as */*
+  Parameters: {"authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 233ms (Views: 0.3ms | ActiveRecord: 0.6ms | Allocations: 1661)
+
+
+Started GET "/auth/verify" for ::1 at 2021-10-03 21:19:06 -0500
+Processing by AuthenticationController#verify as */*
+  Parameters: {"authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+Filter chain halted as :authorize_request rendered or redirected
+Completed 401 Unauthorized in 6ms (Views: 1.6ms | Allocations: 158)
+
+
+Started POST "/auth/login" for ::1 at 2021-10-03 21:19:33 -0500
+Processing by AuthenticationController#login as */*
+  Parameters: {"authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (0.6ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."username" = $1 LIMIT $2[0m  [["username", "admin"], ["LIMIT", 1]]
+  ↳ app/controllers/authentication_controller.rb:6:in `login'
+Completed 200 OK in 236ms (Views: 0.4ms | ActiveRecord: 9.3ms | Allocations: 2930)
+
+
+Started POST "/auth/verify" for ::1 at 2021-10-03 21:19:54 -0500
+  
+ActionController::RoutingError (No route matches [POST] "/auth/verify"):
+  
+Started GET "/auth/verify" for ::1 at 2021-10-03 21:20:10 -0500
+Processing by AuthenticationController#verify as */*
+  Parameters: {"authentication"=>{"username"=>"admin", "password"=>"[FILTERED]"}}
+  [1m[36mUser Load (1.3ms)[0m  [1m[34mSELECT "users".* FROM "users" WHERE "users"."id" = $1 LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/application_controller.rb:19:in `authorize_request'
+Completed 200 OK in 9ms (Views: 0.3ms | ActiveRecord: 1.3ms | Allocations: 904)
+
+
