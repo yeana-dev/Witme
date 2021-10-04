@@ -19,7 +19,7 @@
 
 ## MVP
 
-Witme is a platform for developers and designers to create a team for their side-project or study group. Users can create a post describing their current team and project (if they already have one) or create a study group, either local or remote. In addition, the list can be categorized by programming skill or role(Front-end, Back-end, Designer).
+Witme is a platform for developers and designers to create a team for their side-project or study group. Users can create a post describing their current team and project (if they already have one) or create a study group. In addition, the list can be categorized by role(Front-end, Back-end, Designer) they are recruiting.
 
 ***
 
