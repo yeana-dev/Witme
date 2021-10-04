@@ -1,12 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :update, :destroy]
 
-  # GET /users
-  def index
-    @users = User.all
-    render json: @users
-  end
-
   # GET /users/[:id]
   def show
     render json: @user.attributes.except('password_digest')
@@ -29,7 +23,10 @@ class UsersController < ApplicationController
   # PUT /users/[:id]
   def update
     if @user.update(user_params)
-      render json: @user
+        render json: {
+        user: @user.attributes.except('password_digest'),
+        token: @token
+      }
     else
       render json: @user.errors, status: :unprocessable_entity
     end

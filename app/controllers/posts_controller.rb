@@ -4,13 +4,19 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
-    render json: @posts, include: :user
+    render json: @posts.to_json(:include => {
+      :user => {:only => [:username, :id]},
+      :category => {:only => :category_name}
+    })
   end
 
   # GET /posts/[:id]
   def show
     @post = Post.find(params[:id])
-    render json: @post, include: { users: {include: :usernames} }
+    render json: @post.to_json(:include => {
+      :user => {:only => [:username, :id]},
+      :category => {:only => :category_name}
+    })
   end
 
   # POST /posts
