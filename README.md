@@ -52,9 +52,12 @@ Witme is a platform for developers and designers to create a team for their side
 
 #### Wireframes
 
-> Use the Wireframes section to display desktop, tablet and mobile views. No hand-drawn wireframes. Use a tool like wireframe.cc, Whimsical or AdobeXD
+![image](https://user-images.githubusercontent.com/78275456/135876366-7eced0dc-9442-4c62-8c29-cb202f83c968.png)
+![image](https://user-images.githubusercontent.com/78275456/135876413-69b3f1db-20aa-46b4-93c8-c35a863bfb7f.png)
+![image](https://user-images.githubusercontent.com/78275456/135876435-06cffc90-5e2a-4cce-aa9c-66fabd3b3d9d.png)
+![image](https://user-images.githubusercontent.com/78275456/135876462-b7ed4fc0-32ee-464c-b280-f756601c7350.png)
+![image](https://user-images.githubusercontent.com/78275456/135876477-e5e13ad3-8706-4cac-9d48-8a49cdff53b7.png)
 
-***
 
 #### Component Tree
 
@@ -126,10 +129,10 @@ src
 | Add controllers and routes |    H     |     6 hrs      |     - hrs     |    - hrs    |
 | Authorization/Authentication (JWT/Bcrypt)    |    H     |     6 hrs      |     - hrs     |    - hrs    |
 | Fetch API data from back-end    |    H     |     6 hrs      |     - hrs     |    - hrs    |
-| Create react components    |    H     |     12 hrs      |     - hrs     |    - hrs    |
+| Create react components    |    H     |     20 hrs      |     - hrs     |    - hrs    |
 | Create screens |    H     |     12 hrs      |     0 hrs     |    - hrs    |
 | CSS |    L     |     24 hrs      |     - hrs     |    - hrs    |
-| TOTAL               |          |     77 hrs      |     - hrs     |     TBD     |
+| TOTAL               |          |     85 hrs      |     - hrs     |     TBD     |
 
 ***
 
