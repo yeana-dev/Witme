@@ -138,7 +138,7 @@ src
 
 #### ERD Model
 
-![ERD-witme](https://user-images.githubusercontent.com/78275456/135768812-d2a18004-82db-41b9-92ec-51a77e1d70c4.png)
+![erd-image](https://user-images.githubusercontent.com/78275456/135905622-b2704927-1dbc-4454-a0db-6384c6498e15.png)
 
 ***
 
