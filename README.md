@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/78275456/135881918-51e8632d-62d0-495a-a3d7-2920a07d809b.png)
+
 # PROJECT 4 : 'WITME' README<!-- omit in toc -->
 
 - [Overview](#overview)
