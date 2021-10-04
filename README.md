@@ -1,4 +1,4 @@
-# PROJECT 4 README<!-- omit in toc -->
+# PROJECT 4 : 'WITME' README<!-- omit in toc -->
 
 - [Overview](#overview)
 - [MVP](#mvp)
@@ -14,12 +14,6 @@
 - [Post-MVP](#post-mvp)
 - [Code Showcase](#code-showcase)
 - [Code Issues & Resolutions](#code-issues--resolutions)
-
-***
-
-## Overview
-
-**WITME**
 
 ## MVP
 
