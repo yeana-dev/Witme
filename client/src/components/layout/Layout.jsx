@@ -1,7 +1,9 @@
+import Navigation from "./Navigation";
+
 function Layout(props) {
   return (
     <div className="layout">
-      <nav>I am a nav</nav>
+      <Navigation />
       {props.children}
     </div>
   );

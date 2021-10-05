@@ -44,9 +44,6 @@ function MainContainer(props) {
     getStudyGroupPosts();
   }, []);
 
-  console.log(sideProjectPosts);
-  console.log(studyGroupPosts);
-
   return (
     <div className="main-container">
       <Switch>
@@ -54,10 +51,10 @@ function MainContainer(props) {
           <Home />
         </Route>
         <Route path="/recruit-side-project">
-          <SideProjectPosts />
+          <SideProjectPosts posts={sideProjectPosts} />
         </Route>
         <Route path="/study-group">
-          <StudyPosts />
+          <StudyPosts posts={studyGroupPosts} />
         </Route>
       </Switch>
     </div>
