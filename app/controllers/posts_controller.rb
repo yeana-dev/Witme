@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
   before_action :authorize_request, except: [:index, :show]
+  before_action :add_category_to_post, only: [:create]
   # GET /posts
   def index
     @posts = Post.all
@@ -19,23 +20,33 @@ class PostsController < ApplicationController
     })
   end
 
-  # POST /posts
+  # POST /posts/[:category]
   def create
     @post = Post.new(post_params)
-    @post.user = @current.user
+    @post.user = @current_user
+    @post.category = @category
     if @post.save 
-      render json: @post, status: :created
+      render json: @post, include: :category, status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
   end
 
+  def destroy
+    @post.destroy
+  end
+  
   private
+
+    def add_category_to_post
+      @category = Category.find_by name: (params[:category])
+    end
+
   def set_post
     @post = Post.find(params[:id])
   end
 
   def post_params
-    params.require(:post).permit(:title,:content,:skills)
+    params.require(:post).permit(:title,:content,:skills,:looking_for)
   end
 end
