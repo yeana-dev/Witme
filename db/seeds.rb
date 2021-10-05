@@ -2,17 +2,20 @@
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
 # Examples:
-# Category.destroy_all
-# Post.destroy_all
-# User.destroy_all
+User.destroy_all
+Post.destroy_all
+Category.destroy_all
 
 @admin = User.create!(username: 'admin', email: 'admin@admin.com', password: '123456')
 
 @studygroup = Category.create!(category_name: 'study_group')
 @sideproject = Category.create!(category_name: 'side_project')
 
-10.times do
+5.times do
   Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @studygroup)
+end
+5.times do
+  Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @sideproject)
 end
 
 
