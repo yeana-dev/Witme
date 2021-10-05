@@ -6,7 +6,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     render json: @posts.to_json(:include => {
       :user => {:only => [:username, :id]},
-      :category => {:only => :category_name}
+      :category => {:only => :name}
     })
   end
 
@@ -15,7 +15,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     render json: @post.to_json(:include => {
       :user => {:only => [:username, :id]},
-      :category => {:only => :category_name}
+      :category => {:only => :name}
     })
   end
 

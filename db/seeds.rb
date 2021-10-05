@@ -8,8 +8,8 @@ Category.destroy_all
 
 @admin = User.create!(username: 'admin', email: 'admin@admin.com', password: '123456')
 
-@studygroup = Category.create!(category_name: 'study_group')
-@sideproject = Category.create!(category_name: 'side_project')
+@studygroup = Category.create!(name: 'study_group')
+@sideproject = Category.create!(name: 'side_project')
 
 5.times do
   Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @studygroup)
