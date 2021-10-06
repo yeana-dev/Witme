@@ -19,7 +19,11 @@ function SideProjectPosts(props) {
       );
     } else {
       setFilteredPosts(
-        props.posts.filter((post) => post.looking_for === event.target.value)
+        props.posts.filter(
+          (post) =>
+            post.looking_for === event.target.value ||
+            post.looking_for === "All"
+        )
       );
     }
   };

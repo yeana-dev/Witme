@@ -66,6 +66,7 @@ function PostForm(props) {
           <option value="Front-end">Front-end Developer</option>
           <option value="Back-end">Back-end Developer</option>
           <option value="Designer">Designer</option>
+          <option value="All">Above All</option>
         </select>
       )}
       <label>
