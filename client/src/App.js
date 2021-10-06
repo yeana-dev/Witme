@@ -41,14 +41,13 @@ function App() {
     removeToken();
   };
 
-  console.log(currentUser);
-
   return (
     <div className="App">
       <Layout currentUser={currentUser} handleLogout={handleLogout}>
         <MainContainer
           handleLogin={handleLogin}
           handleRegister={handleRegister}
+          currentUser={currentUser}
         />
       </Layout>
     </div>

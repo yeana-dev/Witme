@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-function CreatePost(props) {
+function PostForm(props) {
   const params = useParams();
   const [post, setPost] = useState({
     title: "",
@@ -15,6 +15,7 @@ function CreatePost(props) {
     if (params.id && props.posts.length > 0) {
       const post = props.posts.find((post) => Number(params.id) === post.id);
       if (post) {
+        console.log(post);
         setPost({
           title: post.title,
           looking_for: post.looking_for,
@@ -24,7 +25,7 @@ function CreatePost(props) {
         });
       }
     }
-  }, [params.id, props.post]);
+  }, [params.id, props.posts]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -81,4 +82,4 @@ function CreatePost(props) {
   );
 }
 
-export default CreatePost;
+export default PostForm;

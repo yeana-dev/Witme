@@ -7,10 +7,10 @@ import Register from "../screens/Register";
 import PostDetail from "../screens/PostDetail";
 import {
   getAllPosts,
-  getOnePost,
+  // getOnePost,
   createPost,
   updatePost,
-  deletePost,
+  // deletePost,
 } from "../services/posts";
 import { Switch, Route, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -84,10 +84,10 @@ function MainContainer(props) {
           <StudyPosts posts={posts} />
         </Route>
         <Route path="/recruit-side-project/:id">
-          <PostDetail posts={posts} />
+          <PostDetail posts={posts} currentUser={props.currentUser} />
         </Route>
         <Route path="/study-group/:id">
-          <PostDetail posts={posts} />
+          <PostDetail posts={posts} currentUser={props.currentUser} />
         </Route>
         <Route path="/new-post-recruit">
           <PostForm
