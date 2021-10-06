@@ -57,7 +57,11 @@ function PostForm(props) {
         />
       </label>
       <label>
-        <select name="looking_for" onChange={handleChange}>
+        <select
+          name="looking_for"
+          onChange={handleChange}
+          value={post.looking_for}
+        >
           <option>I am looking for</option>
           <option value="Front-end">Front-end Developer</option>
           <option value="Back-end">Back-end Developer</option>
