@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 function CreatePost(props) {
+  const params = useParams();
   const [post, setPost] = useState({
     title: "",
     looking_for: "",
@@ -8,6 +10,21 @@ function CreatePost(props) {
     category: `${props.category}`,
     content: "",
   });
+
+  useEffect(() => {
+    if (params.id && props.posts.length > 0) {
+      const post = props.posts.find((post) => Number(params.id) === post.id);
+      if (post) {
+        setPost({
+          title: post.title,
+          looking_for: post.looking_for,
+          skills: post.skills,
+          category: post.category,
+          content: post.content,
+        });
+      }
+    }
+  }, [params.id, props.post]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -22,7 +39,11 @@ function CreatePost(props) {
       className="create-post"
       onSubmit={(event) => {
         event.preventDefault();
-        props.handlePostCreate(post);
+        if (params.id) {
+          props.handlePostUpdate(params.id, post);
+        } else {
+          props.handlePostCreate(post);
+        }
       }}
     >
       <label>

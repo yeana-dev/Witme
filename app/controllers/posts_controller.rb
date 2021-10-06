@@ -32,15 +32,24 @@ class PostsController < ApplicationController
     end
   end
 
+  # PUT /posts/[:id]
+  def update
+    if @post.update(post_params)
+      render json: @post, include: :category, status: :ok
+    else
+      render json: @post.errors, status: :unprocessable_entity
+    end
+  end
+
   def destroy
     @post.destroy
   end
   
   private
 
-    def add_category_to_post
-      @category = Category.find_by name: (params[:category])
-    end
+  def add_category_to_post
+    @category = Category.find_by name: (params[:category])
+  end
 
   def set_post
     @post = Post.find(params[:id])

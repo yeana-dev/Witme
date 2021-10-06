@@ -3,7 +3,6 @@ import Nav from "react-bootstrap/Nav";
 import { NavLink } from "react-router-dom";
 
 function Navigation(props) {
-  const guestUser = <NavLink to="/login">Login</NavLink>;
   return (
     // Using bootstrap Navbar component
     <Navbar bg="light" expand="md">
@@ -20,7 +19,7 @@ function Navigation(props) {
               <button onClick={props.handleLogout}>Log Out</button>
             </div>
           ) : (
-            guestUser
+            <NavLink to="/login">Login</NavLink>
           )}
         </Nav>
       </Navbar.Collapse>
