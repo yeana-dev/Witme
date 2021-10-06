@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="71" height="44" viewBox="0 0 71 44">
+  <g id="Group_11" data-name="Group 11" transform="translate(0 0.54)">
+    <g id="Ellipse_3" data-name="Ellipse 3" transform="translate(27 -0.54)" fill="none" stroke="#fff" stroke-width="3">
+      <circle cx="22" cy="22" r="22" stroke="none"/>
+      <circle cx="22" cy="22" r="20.5" fill="none"/>
+    </g>
+    <path id="Path_12" data-name="Path 12" d="M999.36,464.194l.135.673.235,1.169" transform="translate(-940.665 -442.885)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_14" data-name="Path 14" d="M999.36,464.194l.321,1.6.559,2.787" transform="translate(-937.568 -449.485)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_15" data-name="Path 15" d="M999.36,464.194l.321,1.6.559,2.787" transform="translate(-944.596 -449.057)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_17" data-name="Path 17" d="M.42,5.061C-1.9.521,6.156,0,6.156,0" transform="matrix(-0.766, -0.643, 0.643, -0.766, 59.796, 30.447)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <g id="Ellipse_5" data-name="Ellipse 5" transform="translate(0 -0.54)" fill="none" stroke="#fff" stroke-width="3">
+      <circle cx="22" cy="22" r="22" stroke="none"/>
+      <circle cx="22" cy="22" r="20.5" fill="none"/>
+    </g>
+    <path id="Path_19" data-name="Path 19" d="M999.728,464.194l-.135.673-.235,1.169" transform="translate(-987.512 -442.885)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_20" data-name="Path 20" d="M1000.236,464.194l-.321,1.6-.559,2.787" transform="translate(-991.12 -449.485)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_21" data-name="Path 21" d="M1000.236,464.194l-.321,1.6-.559,2.787" transform="translate(-984.091 -449.057)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+    <path id="Path_22" data-name="Path 22" d="M.421,0C-1.9,4.545,6.157,5.061,6.157,5.061" transform="matrix(0.766, -0.643, 0.643, 0.766, 7.862, 26.572)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="2"/>
+  </g>
+</svg>
