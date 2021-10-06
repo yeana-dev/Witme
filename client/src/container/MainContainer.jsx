@@ -36,11 +36,11 @@ function MainContainer(props) {
       if (props.category === "side_project") {
         const newPost = await createPost(post, "side_project");
         setPosts((prevState) => [...prevState, newPost]);
-        history.push("/new-post-recruit");
+        history.push(`/new-post-recruit/${newPost.id}`);
       } else {
         const newPost = await createPost(post, "study_group");
         setPosts((prevState) => [...prevState, newPost]);
-        history.push("/study-group");
+        history.push(`/study-group/${newPost.id}`);
       }
     } catch (error) {
       console.error(error);

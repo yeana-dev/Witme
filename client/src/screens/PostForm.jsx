@@ -56,7 +56,7 @@ function PostForm(props) {
           onChange={handleChange}
         />
       </label>
-      <label>
+      {props.category === "side_project" && (
         <select
           name="looking_for"
           onChange={handleChange}
@@ -67,15 +67,15 @@ function PostForm(props) {
           <option value="Back-end">Back-end Developer</option>
           <option value="Designer">Designer</option>
         </select>
-        <label>
-          Programming Language/Framework/Program required
-          <input
-            type="text"
-            name="skills"
-            value={post.skills}
-            onChange={handleChange}
-          />
-        </label>
+      )}
+      <label>
+        Programming Language/Framework/Program required
+        <input
+          type="text"
+          name="skills"
+          value={post.skills}
+          onChange={handleChange}
+        />
       </label>
       <label>
         Content

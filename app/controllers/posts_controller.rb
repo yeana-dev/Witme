@@ -26,7 +26,10 @@ class PostsController < ApplicationController
     @post.user = @current_user
     @post.category = @category
     if @post.save 
-      render json: @post, include: :category, status: :created
+      render json: @post.to_json(:include => {
+      :user => {:only => [:username, :id]},
+      :category => {:only => :name}
+    }), status: :created
     else
       render json: @post.errors, status: :unprocessable_entity
     end
@@ -35,7 +38,10 @@ class PostsController < ApplicationController
   # PUT /posts/[:id]
   def update
     if @post.update(post_params)
-      render json: @post, include: :category, status: :ok
+      render json: @post.to_json(:include => {
+      :user => {:only => [:username, :id]},
+      :category => {:only => :name}
+    }), status: :ok
     else
       render json: @post.errors, status: :unprocessable_entity
     end
