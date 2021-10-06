@@ -1,13 +1,41 @@
 import PostCard from "../components/PostCard";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 function SideProjectPosts(props) {
-  const filteredPosts = props.posts.filter(
-    (post) => post.category.name === "side_project"
-  );
+  const [filteredPosts, setFilteredPosts] = useState([]);
+
+  useEffect(() => {
+    const resp = props.posts.filter(
+      (post) => post.category.name === "side_project"
+    );
+    setFilteredPosts(resp);
+  }, []);
+
+  const handleRoleChange = (event) => {
+    if (event.target.value === "default") {
+      setFilteredPosts(
+        props.posts.filter((post) => post.category.name === "side_project")
+      );
+    } else {
+      setFilteredPosts(
+        props.posts.filter((post) => post.looking_for === event.target.value)
+      );
+    }
+  };
+
   return (
     <div className="side-project-posts-container">
       <Link to="/new-post-recruit">New Post</Link>
+      <div className="role-selection">
+        I am a
+        <select onChange={handleRoleChange}>
+          <option value="default">Select a role</option>
+          <option value="Front-end">Front-end Developer</option>
+          <option value="Back-end">Back-end Developer</option>
+          <option value="Designer">Designer</option>
+        </select>
+      </div>
       {filteredPosts.map((post, index) => (
         <div className="post-card" key={index}>
           <Link to={`/recruit-side-project/${post.id}`}>

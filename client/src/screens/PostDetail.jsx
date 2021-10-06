@@ -8,7 +8,8 @@ function PostDetail(props) {
   return (
     <div className="post-detail-container">
       <div className="post-detail-title">{post.title}</div>
-      {/* <div className="post-detail-user">{post.user.username}</div> */}
+      <div className="post-detail-user">{post.user.username}</div>
+      <div className="post-detail-date">{post.created_at.slice(0, 10)}</div>
       <div className="post-detail-lookingfor">{post.looking_for}</div>
       <div className="post-detail-skills">{post.skills}</div>
       <div className="post-detail-content">{post.content}</div>

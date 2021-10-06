@@ -69,13 +69,10 @@ function MainContainer(props) {
           <Home />
         </Route>
         <Route path="/login">
-          <Login
-            handleLogin={props.handleLogin}
-            handleRegister={props.handleRegister}
-          />
+          <Login handleLogin={props.handleLogin} />
         </Route>
         <Route path="/register">
-          <Register />
+          <Register handleRegister={props.handleRegister} />
         </Route>
         <Route path="/recruit-side-project" exact>
           <SideProjectPosts posts={posts} />
