@@ -25,6 +25,13 @@
   margin: 0 15px;
   color: white;
   font-size: 15px;
+  transition: all 100ms ease-in-out;
+}
+
+.navbar a:hover {
+  transform: scale(1.02);
+  font-weight: 800;
+  transition: all 100ms ease-in-out;
 }
 
 .navbar button {
@@ -78,9 +85,9 @@
 }
 
 .active {
+  transform: scale(1.02);
   font-weight: 800;
 }
-
 @media (min-width: 992px) {
   .navbar-user {
     align-items: center;
