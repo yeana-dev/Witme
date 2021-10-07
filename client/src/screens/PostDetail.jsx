@@ -3,8 +3,6 @@ import { Link, useParams } from "react-router-dom";
 function PostDetail(props) {
   const { id } = useParams();
   const post = props.posts.find((post) => post.id === Number(id));
-  console.log(props.currentUser);
-  console.log(post);
   return (
     <div className="post-detail-container">
       <div className="post-detail-title">{post.title}</div>
