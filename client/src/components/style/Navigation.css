@@ -1,10 +1,12 @@
 .navbar {
-  background-color: #0826ff;
+  background-color: #3d53ff;
   padding: 10px 5em;
+  justify-content: space-around;
 }
 
 #navbar-logo {
   display: flex;
+  gap: 20px;
 }
 
 #navbar-witme {
@@ -14,18 +16,64 @@
   color: white;
 }
 
-#navbar a {
+.navbar a {
+  margin: 0 15px;
   color: white;
+  font-size: 15px;
+}
+
+.navbar button {
+  background-color: white;
+  color: #3d53ff;
+  border: none;
+  border-radius: 10px;
+  font-size: 12px;
+  padding: 5px 10px;
+  transition: all 250ms ease-in-out;
+  text-transform: uppercase;
+}
+
+.navbar button:hover {
+  background-color: #ffffff5b;
+  color: white;
+  transition: all 250ms ease-in-out;
+}
+
+.navbar a {
   text-decoration: none;
+  text-transform: uppercase;
+}
+
+.navbar,
+.navbar button {
   font-family: "Rubik", sans-serif;
   font-weight: 500;
-  font-size: 15px;
-  text-transform: uppercase;
-  margin: 0 15px;
+}
+
+#navbar-username {
+  font-family: "Rubik", sans-serif;
+  font-weight: 500;
+  color: white;
 }
 
 .navbar-nav {
-  align-items: center;
   width: 100%;
   justify-content: end;
+}
+
+.navbar-logo-tabs {
+  display: flex;
+  width: 75vw;
+}
+
+.active {
+  font-weight: 800;
+}
+
+.navbar-user {
+  width: 10vw;
+  display: flex;
+  gap: 1em;
+  justify-content: flex-end;
+  align-items: center;
 }

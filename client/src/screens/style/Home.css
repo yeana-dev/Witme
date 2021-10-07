@@ -1,0 +1,28 @@
+.home {
+  margin: 0 auto;
+  background-image: url(../../assets/home_group.png);
+  background-size: contain;
+  height: 500px;
+  width: 1120px;
+  font-family: "Noto Sans", sans-serif;
+}
+
+#home-title {
+  padding-top: 2em;
+  font-size: 65px;
+  font-weight: 900;
+  letter-spacing: -5px;
+  line-height: 75px;
+}
+
+#home-title-bottom {
+  padding-top: 1em;
+  line-height: 2.5em;
+  font-size: 17px;
+}
+
+.highlighted {
+  background-color: #c1f5bc;
+  color: #0826ff;
+  font-weight: 600;
+}
