@@ -9,10 +9,12 @@ function Navigation(props) {
     <Navbar expand="lg">
       <div className="navbar-logo-tabs">
         <div id="navbar-logo">
-          <div id="logo-header">
-            <img src={logosvg} alt="two-smiley-faces-logo" width="60" />
-            <div id="navbar-witme">WITME</div>
-          </div>
+          <Link to="/">
+            <div id="logo-header">
+              <img src={logosvg} alt="two-smiley-faces-logo" width="60" />
+              <div id="navbar-witme">WITME</div>
+            </div>
+          </Link>
           <Navbar.Toggle
             aria-controls="basic-navbar-nav"
             id="nav-toggle-button"

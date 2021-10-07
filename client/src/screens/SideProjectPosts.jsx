@@ -1,4 +1,6 @@
 import PostCard from "../components/PostCard";
+import team_witme from "../assets/team_witme.png";
+import "./style/SideProjectPosts.css";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -10,7 +12,7 @@ function SideProjectPosts(props) {
       (post) => post.category.name === "side_project"
     );
     setFilteredPosts(resp);
-  }, []);
+  }, [props.posts]);
 
   const handleRoleChange = (event) => {
     if (event.target.value === "default") {
@@ -30,23 +32,34 @@ function SideProjectPosts(props) {
 
   return (
     <div className="side-project-posts-container">
-      <Link to="/new-post-recruit">New Post</Link>
-      <div className="role-selection">
-        I am a
-        <select onChange={handleRoleChange}>
-          <option value="default">Select a role</option>
-          <option value="Front-end">Front-end Developer</option>
-          <option value="Back-end">Back-end Developer</option>
-          <option value="Designer">Designer</option>
-        </select>
+      <div className="side-project-top">
+        <img src={team_witme} alt="team-collaborating-pic" width="400" />
+        <div className="side-project-top-right">
+          <header>Team-Witme!</header>
+          <p>Whether you want to join a team or make the team, Start here!</p>
+          <div className="role-selection">
+            I am a
+            <select onChange={handleRoleChange}>
+              <option value="default">Select a role</option>
+              <option value="Front-end">Front-end Developer</option>
+              <option value="Back-end">Back-end Developer</option>
+              <option value="Designer">Designer</option>
+            </select>
+          </div>
+        </div>
       </div>
-      {filteredPosts.map((post, index) => (
-        <div className="post-card" key={index}>
-          <Link to={`/recruit-side-project/${post.id}`}>
+      <div className="new-post">
+        <Link to="/new-post-recruit">
+          <i class="fas fa-file"></i> New Post
+        </Link>
+      </div>
+      <div className="post-card-container">
+        {filteredPosts.map((post, index) => (
+          <Link to={`/recruit-side-project/${post.id}`} key={index}>
             <PostCard post={post} />
           </Link>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

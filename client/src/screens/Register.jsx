@@ -16,53 +16,45 @@ function Register(props) {
     }));
   };
   return (
-    <div className="register-container">
-      <form
-        onSubmit={(event) => {
-          event.preventDefault();
-          passwordConfirm === formData.password
-            ? props.handleRegister(formData)
-            : alert("Password not match");
-        }}
-      >
-        <label>
-          Username
-          <input
-            type="text"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Email
-          <input
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password
-          <input
-            type="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-        </label>
-        <label>
-          Password Confirm
-          <input
-            type="password"
-            value={passwordConfirm}
-            onChange={(e) => setPasswordConfirm(e.target.value)}
-          />
-        </label>
-        <input type="submit" />
-      </form>
-    </div>
+    <form
+      className="user-input-container"
+      onSubmit={(event) => {
+        event.preventDefault();
+        passwordConfirm === formData.password
+          ? props.handleRegister(formData)
+          : alert("Password not match");
+      }}
+    >
+      <header>SIGN UP</header>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={formData.username}
+        onChange={handleChange}
+      />
+      <input
+        type="email"
+        name="email"
+        placeholder="E-mail"
+        value={formData.email}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password (Minimum 6 characters)"
+        value={formData.password}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        placeholder="Password Confirm"
+        value={passwordConfirm}
+        onChange={(e) => setPasswordConfirm(e.target.value)}
+      />
+      <input type="submit" id="input-submit-button" />
+    </form>
   );
 }
 

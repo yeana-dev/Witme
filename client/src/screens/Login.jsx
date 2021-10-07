@@ -16,7 +16,7 @@ function Login(props) {
   };
   return (
     <form
-      className="login"
+      className="user-input-container"
       onSubmit={(event) => {
         event.preventDefault();
         props.handleLogin(loginData);
@@ -37,7 +37,7 @@ function Login(props) {
         value={loginData.password}
         onChange={handleChange}
       />
-      <input type="submit" id="input-submit-button" value="LOGIN" />
+      <input type="submit" id="input-submit-button" value="Login" />
       <div id="sign-up-here">
         No account? <Link to="/register">Sign up here!</Link>
       </div>
