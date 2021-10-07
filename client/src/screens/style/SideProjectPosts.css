@@ -4,20 +4,20 @@
   font-family: "Noto Sans", sans-serif;
 }
 
-.side-project-top {
+.posts-top {
   display: flex;
   justify-content: space-around;
   align-items: center;
   text-align: center;
 }
 
-.side-project-top header {
+.posts-top-right header {
   font-size: 40px;
   font-weight: 900;
   letter-spacing: -2px;
 }
 
-.side-project-top p {
+.posts-top p {
   font-size: 14px;
 }
 

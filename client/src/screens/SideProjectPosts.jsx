@@ -32,9 +32,9 @@ function SideProjectPosts(props) {
 
   return (
     <div className="side-project-posts-container">
-      <div className="side-project-top">
+      <div className="posts-top">
         <img src={team_witme} alt="team-collaborating-pic" width="400" />
-        <div className="side-project-top-right">
+        <div className="posts-top-right">
           <header>Team-Witme!</header>
           <p>Whether you want to join a team or make the team, Start here!</p>
           <div className="role-selection">

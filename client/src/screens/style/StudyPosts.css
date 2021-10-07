@@ -1,0 +1,9 @@
+.study-posts-container {
+  margin: 0 auto;
+  width: 80vw;
+  font-family: "Noto Sans", sans-serif;
+}
+
+.study-posts-container .posts-top {
+  margin: 2em 0;
+}
