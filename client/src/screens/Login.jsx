@@ -22,26 +22,25 @@ function Login(props) {
         props.handleLogin(loginData);
       }}
     >
-      <label>
-        Username
-        <input
-          type="text"
-          name="username"
-          value={loginData.username}
-          onChange={handleChange}
-        />
-      </label>
-      <label>
-        Password
-        <input
-          type="password"
-          name="password"
-          value={loginData.password}
-          onChange={handleChange}
-        />
-      </label>
-      <input type="submit" />
-      <Link to="/register">Register Here</Link>
+      <header>LOGIN</header>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={loginData.username}
+        onChange={handleChange}
+      />
+      <input
+        type="password"
+        name="password"
+        placeholder="Password"
+        value={loginData.password}
+        onChange={handleChange}
+      />
+      <input type="submit" id="input-submit-button" value="LOGIN" />
+      <div id="sign-up-here">
+        No account? <Link to="/register">Sign up here!</Link>
+      </div>
     </form>
   );
 }
