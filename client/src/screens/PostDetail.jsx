@@ -24,14 +24,14 @@ function PostDetail(props) {
             </div>
           ))}
         </div>
-        <div className="post-detail-edit">
-          {props.currentUser &&
-            post.user.username === props.currentUser.username && (
+        {props.currentUser &&
+          post.user.username === props.currentUser.username && (
+            <div className="post-detail-edit">
               <Link to={`/post-edit/${id}`}>
                 <i className="fas fa-edit"></i> Edit
               </Link>
-            )}
-        </div>
+            </div>
+          )}
       </div>
       <div className="post-detail-content">{parse(post.content)}</div>
     </div>
