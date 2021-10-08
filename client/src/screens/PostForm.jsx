@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-
+import "./style/PostForm.css";
 function PostForm(props) {
   const params = useParams();
   const [post, setPost] = useState({
@@ -36,7 +36,6 @@ function PostForm(props) {
       [name]: value,
     }));
   };
-
   return (
     <form
       className="create-post"
@@ -49,18 +48,19 @@ function PostForm(props) {
         }
       }}
     >
-      <label>
-        Title
-        <input
-          type="text"
-          name="title"
-          value={post.title}
-          onChange={handleChange}
-        />
-      </label>
+      <header>NEW POST</header>
+      <input
+        type="text"
+        name="title"
+        placeholder="Title"
+        id="form-title"
+        value={post.title}
+        onChange={handleChange}
+      />
       {props.category === "side_project" && (
         <select
           name="looking_for"
+          id="form-looking-for"
           onChange={handleChange}
           value={post.looking_for}
         >
@@ -71,19 +71,29 @@ function PostForm(props) {
           <option value="All">Above All</option>
         </select>
       )}
-      <label>
-        Programming Language/Framework/Program required
-        <input
-          type="text"
-          name="skills"
-          value={post.skills}
-          onChange={handleChange}
-        />
-      </label>
+      <input
+        type="text"
+        name="skills"
+        id="form-skills"
+        placeholder="Skills/Stacks required. Ex. JavaScript,Figma,Python"
+        value={post.skills}
+        onChange={handleChange}
+      />
       <CKEditor
         name="content"
         editor={ClassicEditor}
         data={post.content}
+        config={{
+          removePlugins: [
+            "CKFinderUploadAdapter",
+            "CKFinder",
+            "EasyImage",
+            "Image",
+            "ImageCaption",
+            "ImageStyle",
+            "ImageToolbar",
+          ],
+        }}
         onChange={(event, editor) => {
           const data = editor.getData();
           setPost((prevState) => ({
@@ -92,7 +102,7 @@ function PostForm(props) {
           }));
         }}
       />
-      <input type="submit" />
+      <input type="submit" id="form-submit" />
     </form>
   );
 }

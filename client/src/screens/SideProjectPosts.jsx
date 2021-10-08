@@ -50,7 +50,7 @@ function SideProjectPosts(props) {
       </div>
       <div className="new-post">
         <Link to="/new-post-recruit">
-          <i class="fas fa-file"></i> New Post
+          <i className="fas fa-file"></i> New Post
         </Link>
       </div>
       <div className="post-card-container">

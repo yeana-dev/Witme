@@ -1,0 +1,59 @@
+.create-post {
+  width: 1000px;
+  margin: 3em auto;
+  background-color: whitesmoke;
+  padding: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+  font-family: "Noto Sans", sans-serif;
+  border-radius: 20px;
+  box-shadow: 4px 4px 3px rgb(0 0 0 / 10%);
+}
+
+.create-post input,
+.create-post select {
+  border: none;
+  padding: 15px;
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+.create-post header {
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: 30px;
+  color: #3d53ff;
+  width: 100%;
+}
+
+.ck.ck-editor {
+  width: 100%;
+}
+
+.ck.ck-editor__main > .ck-editor__editable {
+  height: 300px;
+}
+
+#form-title {
+  width: 100%;
+}
+
+#form-looking-for {
+  padding: 12px;
+}
+
+#form-skills {
+  flex-grow: 1;
+}
+
+#form-submit {
+  background-color: #3d53ff;
+  color: white;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 800;
+  padding: 10px 20px;
+  float: right;
+}
