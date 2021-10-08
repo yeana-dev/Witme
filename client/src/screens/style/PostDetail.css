@@ -25,3 +25,18 @@
 .post-detail-title {
   font-size: 26px;
 }
+
+.post-detail-skills {
+  display: flex;
+  gap: 10px;
+}
+
+.skills-button {
+  background-color: #b0b9ff;
+  color: #3d53ff;
+  padding: 5px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: bold;
+  margin-top: 1em;
+}

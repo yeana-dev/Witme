@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { CKEditor } from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 function PostForm(props) {
   const params = useParams();
@@ -78,10 +80,18 @@ function PostForm(props) {
           onChange={handleChange}
         />
       </label>
-      <label>
-        Content
-        <textarea name="content" value={post.content} onChange={handleChange} />
-      </label>
+      <CKEditor
+        name="content"
+        editor={ClassicEditor}
+        data={post.content}
+        onChange={(event, editor) => {
+          const data = editor.getData();
+          setPost((prevState) => ({
+            ...prevState,
+            content: data,
+          }));
+        }}
+      />
       <input type="submit" />
     </form>
   );

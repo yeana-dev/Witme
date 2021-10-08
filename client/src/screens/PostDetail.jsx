@@ -1,5 +1,6 @@
 import { Link, useParams } from "react-router-dom";
 import "./style/PostDetail.css";
+import parse from "html-react-parser";
 
 function PostDetail(props) {
   const { id } = useParams();
@@ -22,7 +23,7 @@ function PostDetail(props) {
           </div>
         ))}
       </div>
-      <div className="post-detail-content">{post.content}</div>
+      <div className="post-detail-content">{parse(post.content)}</div>
       {props.currentUser &&
         post.user.username === props.currentUser.username && (
           <Link to={`/post-edit/${id}`}>Edit</Link>

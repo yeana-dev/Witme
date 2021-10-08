@@ -21,7 +21,7 @@
 
 Witme is a platform for developers and designers to create a team for their side-project or study group. Users can create a post describing their current team and project (if they already have one) or create a study group. In addition, the list can be categorized by role(Front-end, Back-end, Designer) they are recruiting.
 
-***
+---
 
 ### Goals
 
@@ -29,20 +29,22 @@ Witme is a platform for developers and designers to create a team for their side
 - User authentication/authorization
 - Categorized (filter) list by role (or programming langauge)
 
-***
+---
 
 ### Libraries and Dependencies
 
-|     Library      | Description                                |
-| :--------------: | :----------------------------------------- |
-|      React       | Create a front-end view |
-|   React Router   | Assign different screens to each routes  |
-| Material UI | Responsive navigation, forms, and buttons |
-|     JWT      | To pass logged in user's information and create token |
-|  Bcrypt  | Password-hashing |
-|  Pry  | Ruby REPL |
+|      Library      | Description                                                                         |
+| :---------------: | :---------------------------------------------------------------------------------- |
+|       React       | Create a front-end view                                                             |
+|   React Router    | Assign different screens to each routes                                             |
+|     Bootstrap     | Responsive navigation, forms, and buttons                                           |
+|        JWT        | To pass logged in user's information and create token                               |
+|      Bcrypt       | Password-hashing                                                                    |
+|        Pry        | Ruby REPL                                                                           |
+|     CK Editor     | WYSIWYG Text editor. Allows users to generate HTML content without writing in HTML. |
+| HTML-React-Parser | Convert and render HTML element (user wrote with CK Editor)                         |
 
-***
+---
 
 ### Client (Front End)
 
@@ -56,16 +58,15 @@ Witme is a platform for developers and designers to create a team for their side
 ![image](https://user-images.githubusercontent.com/78275456/135876462-b7ed4fc0-32ee-464c-b280-f756601c7350.png)
 ![image](https://user-images.githubusercontent.com/78275456/135876477-e5e13ad3-8706-4cac-9d48-8a49cdff53b7.png)
 
-
 #### Component Tree
 
 ![witme-component-tree](https://user-images.githubusercontent.com/78275456/135735218-d015d42d-d1ba-4b70-a820-a619ba3bbecc.png)
 
-***
+---
 
 #### Component Architecture
 
-``` structure
+```structure
 
 src
 |__ assets/
@@ -98,7 +99,7 @@ src
       |__ style
           |__ Home.css
           |__ Lookingfor.css
-          |__ Ask.css          
+          |__ Ask.css
           |__ Login.css
           |__ Signup.css
       |__ Home.jsx
@@ -112,27 +113,26 @@ src
       |__ UpdateProject.jsx
       |__ Login.jsx
       |__ Signup.jsx
-      
+
 
 ```
 
 #### Time Estimates
 
+| Task                                      | Priority | Estimated Time | Time Invested | Actual Time |
+| ----------------------------------------- | :------: | :------------: | :-----------: | :---------: |
+| Set up back-end (Ruby)                    |    H     |     4 hrs      |     5 hrs     |    5 hrs    |
+| Set up front-end (React)                  |    H     |     4 hrs      |     3 hrs     |    3 hrs    |
+| Create SQL database tables                |    H     |     3 hrs      |     5 hrs     |    5 hrs    |
+| Add controllers and routes                |    H     |     6 hrs      |    10 hrs     |   10 hrs    |
+| Authorization/Authentication (JWT/Bcrypt) |    H     |     6 hrs      |     8 hrs     |    8 hrs    |
+| Fetch API data from back-end              |    H     |     6 hrs      |     4 hrs     |    4 hrs    |
+| Create react components                   |    H     |     20 hrs     |    18 hrs     |   18 hrs    |
+| Create screens                            |    H     |     12 hrs     |    11 hrs     |   11 hrs    |
+| CSS                                       |    L     |     24 hrs     |    10 hrs     |    - hrs    |
+| TOTAL                                     |          |     85 hrs     |    74 hrs     |     TBD     |
 
-| Task                | Priority | Estimated Time | Time Invested | Actual Time |
-| ------------------- | :------: | :------------: | :-----------: | :---------: |
-| Set up back-end (Ruby) |    H     |     4 hrs      |     - hrs     |    - hrs    |
-| Set up front-end (React) |    H     |     4 hrs      |     - hrs     |    - hrs    |
-| Create SQL database tables |    H     |     3 hrs      |     - hrs     |    - hrs    |
-| Add controllers and routes |    H     |     6 hrs      |     - hrs     |    - hrs    |
-| Authorization/Authentication (JWT/Bcrypt)    |    H     |     6 hrs      |     - hrs     |    - hrs    |
-| Fetch API data from back-end    |    H     |     6 hrs      |     - hrs     |    - hrs    |
-| Create react components    |    H     |     20 hrs      |     - hrs     |    - hrs    |
-| Create screens |    H     |     12 hrs      |     0 hrs     |    - hrs    |
-| CSS |    L     |     24 hrs      |     - hrs     |    - hrs    |
-| TOTAL               |          |     85 hrs      |     - hrs     |     TBD     |
-
-***
+---
 
 ### Server (Back End)
 
@@ -140,7 +140,7 @@ src
 
 ![erd-image](https://user-images.githubusercontent.com/78275456/135905622-b2704927-1dbc-4454-a0db-6384c6498e15.png)
 
-***
+---
 
 ## Post-MVP
 
@@ -148,7 +148,7 @@ src
 - Enable user comments on projects
 - Responsive web-design
 
-***
+---
 
 ## Code Showcase
 
