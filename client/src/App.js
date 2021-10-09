@@ -35,9 +35,13 @@ function App() {
   };
 
   const handleRegister = async (registerData) => {
-    const userData = await registerUser(registerData);
-    setCurrentUser(userData);
-    history.push("/");
+    try {
+      const userData = await registerUser(registerData);
+      setCurrentUser(userData);
+      history.push("/");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   const handleLogout = () => {

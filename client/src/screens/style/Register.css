@@ -1,0 +1,11 @@
+#signup-errors {
+  width: 414px;
+  height: 64px;
+  color: rgb(194, 0, 0);
+  font-weight: 600;
+  padding: 1em;
+  border-radius: 10px;
+  margin: 0 1em;
+  font-size: 13px;
+  text-align: center;
+}
