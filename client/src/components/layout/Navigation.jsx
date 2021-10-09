@@ -38,16 +38,11 @@ function Navigation(props) {
               Study Groups
             </NavLink>
             {props.currentUser ? (
-              <div className="navbar-user">
+              <div className="navbar-user" onClick={() => setExpanded(false)}>
                 <span id="navbar-username">
                   👋&nbsp;&nbsp;{props.currentUser.username}
                 </span>
-                <button
-                  onClick={props.handleLogout}
-                  onClick={() => setExpanded(false)}
-                >
-                  Log Out
-                </button>
+                <button onClick={props.handleLogout}>Log Out</button>
               </div>
             ) : (
               <div className="navbar-user">
