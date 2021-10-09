@@ -37,6 +37,11 @@ function Login(props) {
         value={loginData.password}
         onChange={handleChange}
       />
+      {props.loginError ? (
+        <div id="login-error">Invalid Username / Password!</div>
+      ) : (
+        <div id="login-error-empty"></div>
+      )}
       <input type="submit" id="input-submit-button" value="Login" />
       <div id="sign-up-here">
         No account? <Link to="/register">Sign up here!</Link>

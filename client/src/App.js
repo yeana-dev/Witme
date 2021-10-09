@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
+  const [loginError, setLoginError] = useState(false);
   const history = useHistory();
 
   useEffect(() => {
@@ -23,9 +24,14 @@ function App() {
   }, []);
 
   const handleLogin = async (loginData) => {
-    const userData = await loginUser(loginData);
-    setCurrentUser(userData);
-    history.push("/");
+    try {
+      const userData = await loginUser(loginData);
+      setCurrentUser(userData);
+      setLoginError(false);
+      history.push("/");
+    } catch (error) {
+      setLoginError(true);
+    }
   };
 
   const handleRegister = async (registerData) => {
@@ -47,6 +53,8 @@ function App() {
           handleLogin={handleLogin}
           handleRegister={handleRegister}
           currentUser={currentUser}
+          loginError={loginError}
+          setLoginError={setLoginError}
         />
       </Layout>
     </div>

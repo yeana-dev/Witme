@@ -37,6 +37,20 @@
   text-transform: uppercase;
 }
 
+#login-error {
+  background-color: rgba(255, 0, 0, 0.2);
+  color: rgb(140, 0, 0);
+  padding: 1em;
+  border-radius: 10px;
+  margin: 0 1em;
+  font-size: 13px;
+}
+
+#login-error-empty {
+  width: 414px;
+  height: 45px;
+}
+
 #input-submit-button:hover {
   background-color: #3d54ff8e;
   transition: all 250ms ease-in-out;
