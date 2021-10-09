@@ -59,8 +59,11 @@ function PostDetail(props) {
           {props.currentUser &&
             post.user.username === props.currentUser.username && (
               <div className="post-detail-edit">
+                <button onClick={() => props.handlePostDelete(post.id)}>
+                  DELETE
+                </button>
                 <Link to={`/post-edit/${id}`}>
-                  <i className="fas fa-edit"></i> Edit
+                  <i className="fas fa-edit"></i> EDIT
                 </Link>
               </div>
             )}

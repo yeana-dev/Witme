@@ -49,6 +49,10 @@ class PostsController < ApplicationController
 
   def destroy
     @post.destroy
+    render json: @post.to_json(:include => {
+      :user => {:only => [:username, :id]},
+      :category => {:only => :name}
+    })
   end
   
   private

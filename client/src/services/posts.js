@@ -22,5 +22,5 @@ export const updatePost = async (id, postData) => {
 
 export const deletePost = async (id) => {
   const resp = await api.delete(`/posts/${id}`);
-  return resp;
+  return resp.data;
 };

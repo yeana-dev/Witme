@@ -10,7 +10,7 @@ import {
   getAllPosts,
   createPost,
   updatePost,
-  // deletePost,
+  deletePost,
 } from "../services/posts";
 import { Switch, Route, useHistory } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -54,11 +54,20 @@ function MainContainer(props) {
         return post.id === Number(id) ? updatedPost : post;
       })
     );
-    console.log(updatedPost);
     if (updatedPost.category["name"] === "side_project") {
       history.push(`/recruit-side-project/${updatedPost.id}`);
     } else {
       history.push(`/study-group/${updatedPost.id}`);
+    }
+  };
+
+  const handlePostDelete = async (id) => {
+    const deletedPost = await deletePost(id);
+    setPosts((prevState) => prevState.filter((post) => post.id !== id));
+    if (deletedPost.category.name === "side_project") {
+      history.push("/recruit-side-project");
+    } else {
+      history.push("/study-group");
     }
   };
 
@@ -88,10 +97,18 @@ function MainContainer(props) {
           <StudyPosts posts={posts} />
         </Route>
         <Route path="/recruit-side-project/:id">
-          <PostDetail posts={posts} currentUser={props.currentUser} />
+          <PostDetail
+            posts={posts}
+            currentUser={props.currentUser}
+            handlePostDelete={handlePostDelete}
+          />
         </Route>
         <Route path="/study-group/:id">
-          <PostDetail posts={posts} currentUser={props.currentUser} />
+          <PostDetail
+            posts={posts}
+            currentUser={props.currentUser}
+            handlePostDelete={handlePostDelete}
+          />
         </Route>
         <Route path="/new-post-recruit">
           <PostForm
