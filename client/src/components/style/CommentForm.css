@@ -1,0 +1,31 @@
+#comment-form {
+  display: flex;
+}
+
+#comment-form-input {
+  width: 80%;
+  border: none;
+  background-color: whitesmoke;
+  font-size: 14px;
+  padding: 1em;
+  flex-grow: 1;
+  border-radius: 10px 0 0 10px;
+}
+
+#comment-form-submit {
+  border: none;
+  font-size: 12px;
+  height: 49px;
+  padding: 1em;
+  background-color: #3d53ff;
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 0 10px 10px 0;
+  transition: all 250ms ease-in-out;
+}
+
+#comment-form-submit:hover {
+  background-color: #6174ff;
+  transition: all 250ms ease-in-out;
+}

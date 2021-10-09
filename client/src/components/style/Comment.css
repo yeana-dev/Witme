@@ -1,0 +1,35 @@
+.comments-container {
+  margin-top: 1em;
+}
+
+.comment {
+  margin: 1em 0;
+  background-color: whitesmoke;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+
+.comment-top {
+  display: flex;
+  align-items: flex-end;
+  gap: 10px;
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#comment-username {
+  font-size: 12px;
+  color: #494949;
+}
+
+#comment-created_at {
+  font-size: 10px;
+  color: #a3a3a3;
+}
+
+#comment-content {
+  font-size: 14px;
+}
