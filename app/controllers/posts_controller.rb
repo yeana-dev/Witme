@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
-    render json: @posts.to_json(:include => {
+    render json: @posts.order(created_at: :desc).to_json(:include => {
       :user => {:only => [:username, :id]},
       :category => {:only => :name}
     })

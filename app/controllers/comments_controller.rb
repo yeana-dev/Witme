@@ -1,12 +1,12 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:index, :show]
+  before_action :authorize_request, except: [:index, :show, :showPostsComments]
   before_action :add_post_to_comment, only: [:create, :showPostsComments]
 
   # GET /comments
   def index
     @comments = Comment.all
-    render json: @comments.to_json(:include => {
+    render json: @comments.order(created_at: :desc).to_json(:include => {
       :user => {:only => [:username]},
       :post => {:only => [:title]}
     })
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
   # This will show selected post's comments using post_id
   def showPostsComments
     @comments = Comment.where post: @post
-    render json: @comments.to_json(:include => {
+    render json: @comments.order(created_at: :desc).to_json(:include => {
       :user => {:only => [:username]},
       :post => {:only => [:title]}
     })
