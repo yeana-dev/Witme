@@ -5,6 +5,7 @@
 User.destroy_all
 Post.destroy_all
 Category.destroy_all
+Comment.destroy_all
 
 @admin = User.create!(username: 'admin', email: 'admin@admin.com', password: '123456')
 
@@ -18,9 +19,16 @@ end
   Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @sideproject, looking_for: "Front-end")
 end
 
+@post_with_comment = Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @sideproject, looking_for: "Front-end")
+
+
+3.times do
+  Comment.create!(content: Faker::Lorem.sentence, user: @admin, post: @post_with_comment)
+end
 
 puts "#{User.count} users created!"
 puts "#{Post.count} posts created!"
 puts "#{Category.count} categories created!"
+puts "#{Comment.count} comments created!"
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
