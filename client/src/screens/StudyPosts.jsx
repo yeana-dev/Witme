@@ -18,7 +18,7 @@ function StudyPosts(props) {
       </div>
       <div className="new-post">
         <Link to="/new-post-study">
-          <i className="fas fa-file"></i> New Post
+          <i className="fas fa-file"></i>NEW POST
         </Link>
       </div>
       <div className="post-card-container">

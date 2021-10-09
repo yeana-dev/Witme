@@ -7,7 +7,6 @@ import Register from "../screens/Register";
 import PostDetail from "../screens/PostDetail";
 import {
   getAllPosts,
-  // getOnePost,
   createPost,
   updatePost,
   // deletePost,
@@ -69,7 +68,11 @@ function MainContainer(props) {
           <Home />
         </Route>
         <Route path="/login">
-          <Login handleLogin={props.handleLogin} />
+          <Login
+            handleLogin={props.handleLogin}
+            loginError={props.loginError}
+            setLoginError={props.setLoginError}
+          />
         </Route>
         <Route path="/register">
           <Register handleRegister={props.handleRegister} />

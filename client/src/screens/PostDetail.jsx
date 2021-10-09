@@ -1,12 +1,26 @@
+import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
+// import { getOnePost } from "../services/posts";
+import { getOnePostsComments } from "../services/comments";
+import Comment from "../components/Comment";
+import CommentForm from "../components/CommentForm";
 import "./style/PostDetail.css";
 import parse from "html-react-parser";
 
 function PostDetail(props) {
+  const [comments, setComments] = useState([]);
   const { id } = useParams();
   const post = props.posts.find((post) => post.id === Number(id));
   const skillsArray = post.skills.split(",");
-  console.log(skillsArray);
+
+  useEffect(() => {
+    const fetchComments = async () => {
+      const resp = await getOnePostsComments(Number(id));
+      setComments(resp);
+    };
+    fetchComments();
+  }, [id]);
+
   return (
     <div className="post-detail-container">
       <div className="post-detail-top">
@@ -34,6 +48,8 @@ function PostDetail(props) {
           )}
       </div>
       <div className="post-detail-content">{parse(post.content)}</div>
+      <CommentForm setComments={setComments} post_id={post.id} />
+      <Comment comments={comments} post_id={post.id} />
     </div>
   );
 }

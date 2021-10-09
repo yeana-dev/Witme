@@ -2,8 +2,9 @@
   margin: 0 auto;
   background-image: url(../../assets/home_group.png);
   background-size: contain;
+  background-repeat: no-repeat;
   height: 500px;
-  width: 1120px;
+  max-width: 1120px;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -25,4 +26,15 @@
   background-color: #c1f5bc;
   color: #0826ff;
   font-weight: 600;
+}
+
+@media (max-width: 992px) {
+  #home-title {
+    padding: 1.5em 1em;
+    font-size: 50px;
+  }
+  #home-title-bottom {
+    text-align: center;
+    margin-top: 2em;
+  }
 }
