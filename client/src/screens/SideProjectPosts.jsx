@@ -6,7 +6,9 @@ import { Link } from "react-router-dom";
 
 function SideProjectPosts(props) {
   const [filteredPosts, setFilteredPosts] = useState([]);
-
+  const sortByDate = (a, b) => {
+    return new Date(b.create_at) - new Date(a.create_at);
+  };
   useEffect(() => {
     const resp = props.posts.filter(
       (post) => post.category.name === "side_project"

@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin: 15px 0;
 }
 
 .post-detail-skills {
@@ -44,7 +45,6 @@
   border-radius: 12px;
   font-size: 12px;
   font-weight: bold;
-  margin: 2em 0;
 }
 
 .post-detail-edit {
@@ -52,11 +52,15 @@
   text-transform: uppercase;
   font-size: 12px;
   font-weight: 800;
-  padding: 10px 20px;
+  padding: 5px 15px;
   border-radius: 10px;
 }
 
 .post-detail-edit a {
   color: #3d53ff;
   text-decoration: none;
+}
+
+.post-detail-content {
+  margin: 3em 0;
 }
