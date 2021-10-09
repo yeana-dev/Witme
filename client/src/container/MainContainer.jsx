@@ -5,6 +5,7 @@ import PostForm from "../screens/PostForm";
 import Login from "../screens/Login";
 import Register from "../screens/Register";
 import PostDetail from "../screens/PostDetail";
+import User from "../screens/User";
 import {
   getAllPosts,
   createPost,
@@ -76,6 +77,9 @@ function MainContainer(props) {
         </Route>
         <Route path="/register">
           <Register handleRegister={props.handleRegister} />
+        </Route>
+        <Route path="/user">
+          <User currentUser={props.currentUser} />
         </Route>
         <Route path="/recruit-side-project" exact>
           <SideProjectPosts posts={posts} />

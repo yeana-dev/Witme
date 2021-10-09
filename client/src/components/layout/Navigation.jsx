@@ -26,21 +26,22 @@ function Navigation(props) {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto navlinks" id="navbar-menu">
             <NavLink to="/" exact={true} onClick={() => setExpanded(false)}>
-              Home
+              HOME
             </NavLink>
             <NavLink
               to="/recruit-side-project"
               onClick={() => setExpanded(false)}
             >
-              Project teams
+              PROJECT TEAMS
             </NavLink>
             <NavLink to="/study-group" onClick={() => setExpanded(false)}>
-              Study Groups
+              STUDY GROUPS
             </NavLink>
             {props.currentUser ? (
               <div className="navbar-user" onClick={() => setExpanded(false)}>
                 <span id="navbar-username">
-                  👋&nbsp;&nbsp;{props.currentUser.username}
+                  👋&nbsp;&nbsp;
+                  <Link to="/user">{props.currentUser.username}</Link>
                 </span>
                 <button onClick={props.handleLogout}>Log Out</button>
               </div>

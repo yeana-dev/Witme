@@ -70,11 +70,7 @@ function PostDetail(props) {
           post_id={post.id}
           handleCreateComment={handleCreateComment}
         />
-        {!comments ? (
-          <h1>No comments</h1>
-        ) : (
-          <Comment post_id={post.id} comments={comments} />
-        )}
+        <Comment post_id={post.id} comments={comments} />
       </div>
     );
   }
