@@ -38,7 +38,7 @@
   color: #3d53ff;
   border: none;
   border-radius: 10px;
-  font-size: 12px;
+  font-size: 9px;
   padding: 5px 10px;
   transition: all 250ms ease-in-out;
   text-transform: uppercase;
@@ -90,7 +90,7 @@
 @media (min-width: 992px) {
   .navbar-user {
     align-items: center;
-    width: 10vw;
+    width: 15vw;
     justify-content: flex-end;
   }
 }
