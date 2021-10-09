@@ -6,9 +6,6 @@ import { Link } from "react-router-dom";
 
 function SideProjectPosts(props) {
   const [filteredPosts, setFilteredPosts] = useState([]);
-  const sortByDate = (a, b) => {
-    return new Date(b.create_at) - new Date(a.create_at);
-  };
   useEffect(() => {
     const resp = props.posts.filter(
       (post) => post.category.name === "side_project"
@@ -52,7 +49,7 @@ function SideProjectPosts(props) {
       </div>
       <div className="new-post">
         <Link to="/new-post-recruit">
-          <i className="fas fa-file"></i> NEW POST
+          <i className="fas fa-file"></i>&nbsp;&nbsp;NEW POST
         </Link>
       </div>
       <div className="post-card-container">

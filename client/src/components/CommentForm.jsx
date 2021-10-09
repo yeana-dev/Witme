@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { createComment } from "../services/comments";
 import "./style/CommentForm.css";
 
 function CommentForm(props) {
@@ -12,16 +11,14 @@ function CommentForm(props) {
       content: event.target.value,
     }));
   };
-  const handleSubmit = async (comment, post_id) => {
-    const newComment = await createComment(comment, post_id);
-    props.setComments((prevState) => [...prevState, newComment]);
-  };
+
   return (
     <form
       id="comment-form"
       onSubmit={(event) => {
         event.preventDefault();
-        handleSubmit(comment, props.post_id);
+        props.handleCreateComment(comment, props.post_id);
+        setComment({ content: "" });
       }}
     >
       <input
