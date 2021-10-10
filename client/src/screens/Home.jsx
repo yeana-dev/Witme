@@ -1,4 +1,5 @@
 import "./style/Home.css";
+import { Link } from "react-router-dom";
 
 function Home(props) {
   return (
@@ -23,12 +24,17 @@ function Home(props) {
         <div>
           Are you a <span className="highlighted">developer</span> or{" "}
           <span className="highlighted">designer</span> looking to join a team
-          for your next project?<button>View current listing of teams</button>
+          for your next project?
+          <Link to="/recruit-side-project">
+            <button>View current listing of teams</button>
+          </Link>
         </div>
         <div>
           Best way to{" "}
           <span className="highlighted">eliminates procrastination!</span>
-          <button>View our current study groups</button>
+          <Link to="/study-group">
+            <button>View our current study groups</button>
+          </Link>
         </div>
       </div>
     </div>
