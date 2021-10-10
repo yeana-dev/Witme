@@ -1,14 +1,18 @@
 .home {
   margin: 0 auto;
-  background-image: url(../../assets/home_group.png);
-  background-size: contain;
-  background-repeat: no-repeat;
-  height: 500px;
   max-width: 1120px;
   font-family: "Noto Sans", sans-serif;
 }
 
 #home-title {
+  background-image: url(../../assets/home_group.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  max-width: 1120px;
+  height: 500px;
+}
+
+#home-title header {
   padding-top: 2em;
   font-size: 65px;
   font-weight: 900;
@@ -26,6 +30,39 @@
   background-color: #c1f5bc;
   color: #0826ff;
   font-weight: 600;
+}
+
+#home-view-list {
+  display: flex;
+  margin: 3em 0;
+  justify-content: space-around;
+  align-items: center;
+}
+
+#home-view-list div {
+  width: 350px;
+  text-align: center;
+  font-size: 14px;
+}
+
+#home-view-list div button {
+  margin-top: 20px;
+  background-color: #3d52ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  font-size: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 250ms ease-in-out;
+}
+
+#home-view-list div button:hover {
+  background-color: #3d50ff70;
+  color: #3d52ff;
+  transition: all 250ms ease-in-out;
 }
 
 @media (max-width: 992px) {
