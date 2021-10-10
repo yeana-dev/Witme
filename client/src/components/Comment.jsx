@@ -30,6 +30,7 @@ function Comment(props) {
                   <i
                     className="far fa-edit"
                     onClick={() => {
+                      window.scrollTo(0, 0);
                       props.setCommentIdEdit(comment.id);
                     }}
                   ></i>
