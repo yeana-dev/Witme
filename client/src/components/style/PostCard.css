@@ -1,16 +1,16 @@
 .post-card {
   background-color: whitesmoke;
-  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 3px 3px rgb(0 0 0 / 10%);
   font-family: "Noto Sans", sans-serif;
-  padding: 1em;
+  padding: 1.5em;
   border-radius: 20px;
-  transition: all 250ms ease-in-out;
+  transition: all 150ms ease-in-out;
 }
 
 .post-card:hover {
   transform: scale(1.01);
-  background-color: rgb(240, 240, 240);
-  transition: all 250ms ease-in-out;
+  background-color: #3d54ff10;
+  transition: all 150ms ease-in-out;
 }
 
 .post-card .content {
@@ -18,8 +18,9 @@
 }
 
 .post-card .title {
-  color: black;
-  font-size: 18px;
+  color: #3d53ff;
+  font-weight: 700;
+  font-size: 16px;
 }
 
 .post-card .username,
