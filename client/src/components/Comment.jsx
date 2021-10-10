@@ -1,8 +1,4 @@
 import "./style/Comment.css";
-// import { getOnePostsComments } from "../services/comments";
-// import { useState, useEffect } from "react";
-// import { createComment } from "../services/comments";
-// import CommentForm from "../components/CommentForm";
 
 function Comment(props) {
   if (!props.comments) {
@@ -17,6 +13,24 @@ function Comment(props) {
               <div id="comment-created_at">
                 {comment.created_at.slice(0, 10)}
               </div>
+              {props.currentUser.username === comment.user.username && (
+                <div className="comment-edit-del-btn">
+                  <button
+                    onClick={() => {
+                      props.setCommentIdEdit(comment.id);
+                    }}
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => {
+                      props.handleDeleteComment(comment.id);
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              )}
             </div>
             <div id="comment-content">{comment.content}</div>
           </div>

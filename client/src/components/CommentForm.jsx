@@ -1,24 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./style/CommentForm.css";
 
 function CommentForm(props) {
-  const [comment, setComment] = useState({
+  const [commentForm, setCommentForm] = useState({
     content: "",
   });
   const handleChange = (event) => {
-    setComment((prevState) => ({
+    setCommentForm((prevState) => ({
       ...prevState,
       content: event.target.value,
     }));
   };
+
+  useEffect(() => {
+    if (props.commentIdEdit >= 1) {
+      const comment = props.comments.find(
+        (comment) => comment.id === props.commentIdEdit
+      );
+      setCommentForm({
+        content: comment.content,
+      });
+    }
+  }, [props.comments, props.commentIdEdit]);
 
   return (
     <form
       id="comment-form"
       onSubmit={(event) => {
         event.preventDefault();
-        props.handleCreateComment(comment, props.post_id);
-        setComment({ content: "" });
+        if (props.commentIdEdit) {
+          props.handleUpdateComment(props.commentIdEdit, commentForm);
+        } else {
+          props.handleCreateComment(commentForm, props.post_id);
+          setCommentForm({ content: "" });
+        }
       }}
     >
       <input
@@ -26,7 +41,7 @@ function CommentForm(props) {
         id="comment-form-input"
         placeholder="New comment"
         onChange={handleChange}
-        value={comment.content}
+        value={commentForm.content}
       />
       <input type="submit" id="comment-form-submit" />
     </form>

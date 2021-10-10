@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getOnePost } from "../services/posts";
-import { getOnePostsComments } from "../services/comments";
-import { createComment } from "../services/comments";
+import {
+  getOnePostsComments,
+  updateComment,
+  createComment,
+  deleteComment,
+} from "../services/comments";
 import CommentForm from "../components/CommentForm";
 import Comment from "../components/Comment";
 import "./style/PostDetail.css";
@@ -10,6 +14,7 @@ import parse from "html-react-parser";
 
 function PostDetail(props) {
   const [comments, setComments] = useState([]);
+  const [commentIdEdit, setCommentIdEdit] = useState(0);
   const [post, setPost] = useState(null);
   const { id } = useParams();
 
@@ -32,6 +37,24 @@ function PostDetail(props) {
   const handleCreateComment = async (comment, id) => {
     const newComment = await createComment(comment, id);
     setComments((prevState) => [newComment, ...prevState]);
+  };
+
+  const handleUpdateComment = async (id, comment) => {
+    const updatedComment = await updateComment(id, comment);
+    setComments((prevState) =>
+      prevState.map((comment) => {
+        return comment.id === id ? updatedComment : comment;
+      })
+    );
+    setCommentIdEdit(0);
+  };
+
+  const handleDeleteComment = async (id) => {
+    const deletedComment = await deleteComment(id);
+    console.log(id);
+    setComments((prevState) => {
+      prevState.filter((comment) => comment.id !== id);
+    });
   };
 
   if (!post) {
@@ -72,8 +95,17 @@ function PostDetail(props) {
         <CommentForm
           post_id={post.id}
           handleCreateComment={handleCreateComment}
+          handleUpdateComment={handleUpdateComment}
+          commentIdEdit={commentIdEdit}
+          comments={comments}
         />
-        <Comment post_id={post.id} comments={comments} />
+        <Comment
+          post_id={post.id}
+          comments={comments}
+          currentUser={props.currentUser}
+          handleDeleteComment={handleDeleteComment}
+          setCommentIdEdit={setCommentIdEdit}
+        />
       </div>
     );
   }

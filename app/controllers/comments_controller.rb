@@ -60,6 +60,10 @@ class CommentsController < ApplicationController
   # DELETE /comments/[:id]
   def destroy
     @comment.destroy
+    render json: @comment.to_json(:include => {
+      :user => {:only => [:username]},
+      :post => {:only => [:title]}
+    })
   end
 
   private
