@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { getOnePost } from "../services/posts";
 import {
+  getOnePostsComments,
   updateComment,
   createComment,
   deleteComment,
@@ -25,6 +26,14 @@ function PostDetail(props) {
     fetchPost();
   }, [id]);
 
+  useEffect(() => {
+    const fetchComments = async () => {
+      const resp = await getOnePostsComments(id);
+      setComments(resp);
+    };
+    fetchComments();
+  }, [id]);
+
   const handleCreateComment = async (comment, id) => {
     const newComment = await createComment(comment, id);
     setComments((prevState) => [newComment, ...prevState]);
@@ -40,14 +49,13 @@ function PostDetail(props) {
     setCommentIdEdit(0);
   };
 
-  // const handleDeleteComment = async (id) => {
-  //   await deleteComment(id);
-  //   setComments((prevState) => {
-  //     prevState.filter((comment) => comment.id !== id);
-  //   });
-  // console.log(comments);
-
-  // console.log(comments);
+  const handleDeleteComment = async (id) => {
+    await deleteComment(id);
+    setCommentIdEdit(0);
+    setComments((prevState) =>
+      prevState.filter((comment) => comment.id !== id)
+    );
+  };
 
   if (!post) {
     return <h1>Loading</h1>;
@@ -95,7 +103,8 @@ function PostDetail(props) {
           post_id={post.id}
           currentUser={props.currentUser}
           comments={comments}
-          setComments={setComments}
+          handleDeleteComment={handleDeleteComment}
+          setCommentIdEdit={setCommentIdEdit}
         />
       </div>
     );

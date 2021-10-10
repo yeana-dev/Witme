@@ -1,24 +1,6 @@
 import "./style/Comment.css";
-import { useEffect } from "react";
-import { getOnePostsComments, deleteComment } from "../services/comments";
 
 function Comment(props) {
-  useEffect(() => {
-    const fetchComments = async () => {
-      const resp = await getOnePostsComments(props.post_id);
-      props.setComments(resp);
-    };
-    fetchComments();
-  }, [props.post_id]);
-
-  const handleDeleteComment = async (id) => {
-    await deleteComment(id);
-    props.setComments((prevState) => {
-      prevState.filter((comment) => comment.id !== id);
-    });
-  };
-
-  console.log(props.comments);
   if (!props.comments) {
     return <h1>loading</h1>;
   } else {
@@ -40,7 +22,7 @@ function Comment(props) {
                   >
                     Edit
                   </button>
-                  <button onClick={() => handleDeleteComment(comment.id)}>
+                  <button onClick={() => props.handleDeleteComment(comment.id)}>
                     Delete
                   </button>
                 </div>
