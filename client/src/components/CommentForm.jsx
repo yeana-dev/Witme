@@ -37,13 +37,22 @@ function CommentForm(props) {
       }}
     >
       <input
+        disabled={props.currentUser ? false : true}
         type="text"
         id="comment-form-input"
-        placeholder="New comment"
+        placeholder={
+          props.currentUser
+            ? "New comment"
+            : "Join our community to collaborate!"
+        }
         onChange={handleChange}
         value={commentForm.content}
       />
-      <input type="submit" id="comment-form-submit" />
+      <input
+        type="submit"
+        id="comment-form-submit"
+        disabled={props.currentUser ? false : true}
+      />
     </form>
   );
 }

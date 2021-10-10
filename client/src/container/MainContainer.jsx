@@ -31,12 +31,12 @@ function MainContainer(props) {
     getData();
   }, []);
 
-  const handlePostCreate = async (post) => {
+  const handlePostCreate = async (post, category) => {
     try {
-      if (props.category === "side_project") {
+      if (category === "side_project") {
         const newPost = await createPost(post, "side_project");
         setPosts((prevState) => [...prevState, newPost]);
-        history.push(`/new-post-recruit/${newPost.id}`);
+        history.push(`/recruit-side-project/${newPost.id}`);
       } else {
         const newPost = await createPost(post, "study_group");
         setPosts((prevState) => [...prevState, newPost]);
@@ -113,12 +113,14 @@ function MainContainer(props) {
         <Route path="/new-post-recruit">
           <PostForm
             category="side_project"
+            currentUser={props.currentUser}
             handlePostCreate={handlePostCreate}
           />
         </Route>
         <Route path="/new-post-study">
           <PostForm
             category="study_group"
+            currentUser={props.currentUser}
             handlePostCreate={handlePostCreate}
           />
         </Route>
