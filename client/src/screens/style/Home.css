@@ -1,5 +1,5 @@
 .home {
-  margin: 0 auto;
+  margin: 3em auto;
   max-width: 1120px;
   font-family: "Noto Sans", sans-serif;
 }
@@ -69,6 +69,7 @@
   .home {
     background-image: url(../../assets/home-small.png);
     background-size: 105%;
+    margin: 0 auto;
     background-repeat: no-repeat;
   }
   .home header {
