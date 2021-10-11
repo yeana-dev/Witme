@@ -43,11 +43,7 @@ function CommentForm(props) {
         type="text"
         autoComplete="off"
         id="comment-form-input"
-        placeholder={
-          props.currentUser
-            ? "New comment"
-            : "Join our community to collaborate!"
-        }
+        placeholder={props.currentUser ? "New comment" : "Please Login"}
         onChange={handleChange}
         value={commentForm.content}
       />
