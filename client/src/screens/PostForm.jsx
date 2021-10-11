@@ -86,6 +86,7 @@ function PostForm(props) {
         </div>
         <CKEditor
           name="content"
+          id="ckeditor-width"
           editor={ClassicEditor}
           data={post.content}
           config={{
@@ -98,6 +99,7 @@ function PostForm(props) {
               "ImageStyle",
               "ImageToolbar",
             ],
+            width: "100%",
           }}
           onChange={(event, editor) => {
             const data = editor.getData();

@@ -32,13 +32,14 @@
   width: 100%;
 }
 
-.ck.ck-reset,
-.ck.ck-editor {
-  width: 100%;
-}
-
 .ck.ck-editor__main > .ck-editor__editable {
   height: 300px;
+  max-width: 1000px;
+}
+
+.ck.ck-editor,
+.ck.ck-reset_all {
+  width: 100%;
 }
 
 .post-form-top {
