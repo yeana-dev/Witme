@@ -128,9 +128,9 @@ src
 | Authorization/Authentication (JWT/Bcrypt) |    H     |     6 hrs      |     8 hrs     |    8 hrs    |
 | Fetch API data from back-end              |    H     |     6 hrs      |     4 hrs     |    4 hrs    |
 | Create react components                   |    H     |     20 hrs     |    18 hrs     |   18 hrs    |
-| Create screens                            |    H     |     12 hrs     |    11 hrs     |   11 hrs    |
-| CSS                                       |    L     |     24 hrs     |    10 hrs     |    - hrs    |
-| TOTAL                                     |          |     85 hrs     |    74 hrs     |     TBD     |
+| Create screens                            |    H     |     12 hrs     |    15 hrs     |   15 hrs    |
+| CSS                                       |    L     |     24 hrs     |    30 hrs     |   30 hrs    |
+| TOTAL                                     |          |     85 hrs     |    98 hrs     |   98 hrs    |
 
 ---
 
