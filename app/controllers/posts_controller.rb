@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:index, :show]
+  before_action :authorize_request, except: [:index, :show, :showUsersPosts]
   before_action :add_category_to_post, only: [:create]
   # GET /posts
   def index
@@ -8,6 +8,16 @@ class PostsController < ApplicationController
     render json: @posts.order(created_at: :desc).to_json(:include => {
       :user => {:only => [:username, :id]},
       :category => {:only => :name}
+    })
+  end
+
+  # GET /users/[:user_id]/posts
+  def showUsersPosts
+    @user = User.find(params[:user_id])
+    @posts = Post.where user: @user
+    render json: @posts.order(created_at: :desc).to_json(:include => {
+    :user => {:only => [:username, :id]},
+    :category => {:only => :name}
     })
   end
 

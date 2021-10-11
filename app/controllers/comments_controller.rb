@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: [:show, :update, :destroy]
-  before_action :authorize_request, except: [:index, :show, :showPostsComments]
+  before_action :authorize_request, except: [:index, :show, :showPostsComments, :showUsersComments]
   before_action :add_post_to_comment, only: [:create, :showPostsComments]
 
   # GET /comments
@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @comments = Comment.all
     render json: @comments.order(created_at: :desc).to_json(:include => {
       :user => {:only => [:username]},
-      :post => {:only => [:title]}
+      :post => {:only => [:title,:id,:category_id]}
     })
   end
 
@@ -18,7 +18,17 @@ class CommentsController < ApplicationController
     @comments = Comment.where post: @post
     render json: @comments.order(created_at: :desc).to_json(:include => {
       :user => {:only => [:username]},
-      :post => {:only => [:title]}
+      :post => {:only => [:title,:id,:category_id]}
+    })
+  end
+
+  # GET /users/[:user_id]/comments
+  def showUsersComments
+    @user = User.find(params[:user_id])
+    @comments = Comment.where user: @user
+    render json: @comments.order(created_at: :desc).to_json(:include => {
+    :user => {:only => [:username]},
+      :post => {:only => [:title,:id,:category_id]}
     })
   end
 
@@ -26,7 +36,7 @@ class CommentsController < ApplicationController
   def show
     render json: @comment.to_json(:include => {
       :user => {:only => [:username]},
-      :post => {:only => [:title]}
+      :post => {:only => [:title,:id,:category_id]}
     })
   end
 
@@ -38,7 +48,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render json: @comment.to_json(:include => {
       :user => {:only => [:username]},
-      :post => {:only => [:title]}
+      :post => {:only => [:title,:id,:category_id]}
     })
     else
       render json: @comment.errors, status: :unprocessable_entity
@@ -50,7 +60,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       render json: @comment.to_json(:include => {
       :user => {:only => [:username]},
-      :post => {:only => [:title]}
+      :post => {:only => [:title,:id,:category_id]}
     })
     else
       render json: @comment.errors, status: :unprocessable_entity
@@ -62,7 +72,7 @@ class CommentsController < ApplicationController
     @comment.destroy
     render json: @comment.to_json(:include => {
       :user => {:only => [:username]},
-      :post => {:only => [:title]}
+      :post => {:only => [:title,:id,:category_id]}
     })
   end
 
