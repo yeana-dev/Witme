@@ -39,6 +39,7 @@ function CommentForm(props) {
       <input
         disabled={props.currentUser ? false : true}
         type="text"
+        autoComplete="off"
         id="comment-form-input"
         placeholder={
           props.currentUser

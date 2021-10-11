@@ -25,21 +25,22 @@ function Comment(props) {
                   {comment.created_at.slice(0, 10)}
                 </div>
               </div>
-              {props.currentUser.username === comment.user.username && (
-                <div className="comment-edit-del-btn">
-                  <i
-                    className="far fa-edit"
-                    onClick={() => {
-                      window.scrollTo(0, 0);
-                      props.setCommentIdEdit(comment.id);
-                    }}
-                  ></i>
-                  <i
-                    className="far fa-trash-alt"
-                    onClick={() => props.handleDeleteComment(comment.id)}
-                  ></i>
-                </div>
-              )}
+              {props.currentUser &&
+                props.currentUser.username === comment.user.username && (
+                  <div className="comment-edit-del-btn">
+                    <i
+                      className="far fa-edit"
+                      onClick={() => {
+                        window.scrollTo(0, 0);
+                        props.setCommentIdEdit(comment.id);
+                      }}
+                    ></i>
+                    <i
+                      className="far fa-trash-alt"
+                      onClick={() => props.handleDeleteComment(comment.id)}
+                    ></i>
+                  </div>
+                )}
             </div>
             <div id="comment-content">{comment.content}</div>
           </div>
