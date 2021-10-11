@@ -51,7 +51,7 @@ function PostForm(props) {
           }
         }}
       >
-        <header>NEW POST</header>
+        <header>{params ? "EDIT POST" : "NEW POST"}</header>
         <div className="post-form-top">
           <input
             type="text"
