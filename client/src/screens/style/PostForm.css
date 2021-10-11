@@ -36,12 +36,19 @@
   height: 300px;
 }
 
-#form-title {
+.post-form-top {
+  display: flex;
   width: 100%;
+}
+
+#form-title {
+  width: 50%;
+  margin-right: 10px;
 }
 
 #form-looking-for {
   padding: 12px;
+  margin-right: 10px;
 }
 
 #form-skills {
