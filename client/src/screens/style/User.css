@@ -1,0 +1,85 @@
+.user-detail-container {
+  max-width: 800px;
+  margin: 2em auto;
+}
+
+.user-detail-container header {
+  font-family: "Rubik", sans-serif;
+  color: #3d53ff;
+  font-weight: 900;
+  font-size: 30px;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.user-post-container {
+  margin-bottom: 3em;
+}
+
+.user-post-card {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  transition: all 250ms ease-in-out;
+}
+
+.user-post-card:hover {
+  background-color: #3d54ff10;
+  transition: all 250ms ease-in-out;
+}
+
+.user-post-card .title {
+  flex-grow: 1;
+  font-size: 14px;
+}
+
+.user-detail-container a {
+  text-decoration: none;
+  font-family: "Noto Sans", sans-serif;
+  color: black;
+}
+
+.user-detail-container a:hover {
+  font-weight: bold;
+}
+
+.user-detail-container .category {
+  font-size: 10px;
+  background-color: #c1f5bc;
+  color: #3d53ff;
+  padding: 3px 10px;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.user-detail-container .created_at {
+  font-size: 12px;
+  color: #757575;
+}
+
+.user-comment-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  margin-top: 1em;
+}
+
+.user-comment-card .created_at {
+  color: darkgray;
+  font-size: 10px;
+}
+
+.user-comment-card .content {
+  font-size: 14px;
+}
+
+.from-post {
+  font-size: 14px;
+}
+
+.from-post {
+  font-size: 12px;
+}
+
+.from {
+  color: #636363;
+}
