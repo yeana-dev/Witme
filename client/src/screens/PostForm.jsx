@@ -51,7 +51,7 @@ function PostForm(props) {
           }
         }}
       >
-        <header>{params ? "EDIT POST" : "NEW POST"}</header>
+        <header>{params.id ? "EDIT POST" : "NEW POST"}</header>
         <div className="post-form-top">
           <input
             type="text"
@@ -89,6 +89,7 @@ function PostForm(props) {
           id="ckeditor-width"
           editor={ClassicEditor}
           data={post.content}
+          width="100%"
           config={{
             removePlugins: [
               "CKFinderUploadAdapter",

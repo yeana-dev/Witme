@@ -28,8 +28,10 @@ function CommentForm(props) {
       id="comment-form"
       onSubmit={(event) => {
         event.preventDefault();
-        if (props.commentIdEdit) {
+        if (props.commentIdEdit >= 1) {
           props.handleUpdateComment(props.commentIdEdit, commentForm);
+          setCommentForm({ content: "" });
+          props.setCommentIdEdit(0);
         } else {
           props.handleCreateComment(commentForm, props.post_id);
           setCommentForm({ content: "" });

@@ -37,7 +37,6 @@ function PostDetail(props) {
         return comment.id === id ? updatedComment : comment;
       })
     );
-    setCommentIdEdit(0);
   };
 
   const handleDeleteComment = async (id) => {
@@ -90,6 +89,7 @@ function PostDetail(props) {
           handleUpdateComment={handleUpdateComment}
           commentIdEdit={commentIdEdit}
           comments={comments}
+          setCommentIdEdit={setCommentIdEdit}
         />
         <Comment
           post_id={post.id}
