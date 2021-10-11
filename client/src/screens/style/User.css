@@ -63,6 +63,18 @@
   margin-top: 1em;
 }
 
+.user-comment-card {
+  background-color: #e7e7e7;
+  border-radius: 10px;
+  padding: 1em;
+  transition: all 250ms ease-in-out;
+}
+
+.user-comment-card:hover {
+  background-color: #dddddd;
+  transition: all 250ms ease-in-out;
+}
+
 .user-comment-card .created_at {
   color: darkgray;
   font-size: 10px;
