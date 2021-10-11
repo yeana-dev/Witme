@@ -54,7 +54,7 @@ function User(props) {
         {comments.map((comment) => (
           <Link
             to={
-              comment.post.category_id === 19
+              comment.post.category_id === 19 || comment.post.category_id === 9
                 ? `/study-group/${comment.post.id}`
                 : `/recruit-side-project/${comment.post.id}`
             }
