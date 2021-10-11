@@ -25,8 +25,6 @@ function User(props) {
     fetchComments();
   }, [props.currentUser]);
 
-  console.log(comments);
-  console.log(posts);
   return (
     <div className="user-detail-container">
       <div className="user-post-container">
@@ -56,7 +54,7 @@ function User(props) {
         {comments.map((comment) => (
           <Link
             to={
-              comment.post.category_id === 17
+              comment.post.category_id === 19
                 ? `/study-group/${comment.post.id}`
                 : `/recruit-side-project/${comment.post.id}`
             }

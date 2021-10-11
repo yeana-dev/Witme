@@ -36,8 +36,6 @@ function PostForm(props) {
     }));
   };
 
-  console.log(props.currentUser);
-
   return (
     <div className="post-form-container">
       <form

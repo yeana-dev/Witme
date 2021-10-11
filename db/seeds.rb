@@ -12,20 +12,6 @@ Comment.destroy_all
 @studygroup = Category.create!(name: 'study_group')
 @sideproject = Category.create!(name: 'side_project')
 
-5.times do
-  Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @studygroup)
-end
-5.times do
-  Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @sideproject, looking_for: "Front-end")
-end
-
-@post_with_comment = Post.create!(title: Faker::Lorem.sentence(word_count: 3), content: Faker::Lorem.paragraphs, skills: Faker::ProgrammingLanguage.name, user: @admin, category: @sideproject, looking_for: "Front-end")
-
-
-3.times do
-  Comment.create!(content: Faker::Lorem.sentence, user: @admin, post: @post_with_comment)
-end
-
 puts "#{User.count} users created!"
 puts "#{Post.count} posts created!"
 puts "#{Category.count} categories created!"
