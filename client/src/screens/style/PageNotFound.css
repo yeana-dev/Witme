@@ -1,0 +1,22 @@
+.page-not-found {
+  margin: 30vh auto;
+  text-align: center;
+}
+
+.page-not-found h1 {
+  font-family: "Rubik", sans-serif;
+  font-weight: 800;
+  font-size: 45px;
+  color: #3d53ff;
+}
+
+.page-not-found div {
+  font-family: "Noto Sans", sans-serif;
+  background-color: #c1f5bc;
+  color: #0826ff;
+  font-weight: 600;
+  padding: 1em;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  font-size: 12px;
+}
