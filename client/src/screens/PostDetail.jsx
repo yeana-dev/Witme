@@ -48,8 +48,6 @@ function PostDetail(props) {
     );
   };
 
-  console.log(comments);
-
   if (!post) {
     return <h1>Loading</h1>;
   } else {

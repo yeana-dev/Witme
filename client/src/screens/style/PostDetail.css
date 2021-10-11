@@ -47,9 +47,6 @@
   font-weight: bold;
 }
 
-/* .post-detail-edit-delete { */
-/* } */
-
 .post-detail-edit a,
 .post-detail-edit button {
   color: #3d53ff;
@@ -65,4 +62,10 @@
 
 .post-detail-content {
   margin: 3em 0;
+}
+
+@media (max-width: 576px) {
+  .post-detail-container {
+    width: 90%;
+  }
 }

@@ -2,7 +2,7 @@
   background-color: whitesmoke;
   display: flex;
   flex-direction: column;
-  width: 600px;
+  max-width: 500px;
   margin: 4em auto;
   padding: 4em 5em;
   text-align: center;
@@ -67,4 +67,10 @@
   cursor: pointer;
   background-color: lightgreen;
   transition: all 250ms ease-in-out;
+}
+
+@media (max-width: 500px) {
+  .user-input-container {
+    margin: 1em;
+  }
 }

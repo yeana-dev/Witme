@@ -6,6 +6,7 @@ import Login from "../screens/Login";
 import Register from "../screens/Register";
 import PostDetail from "../screens/PostDetail";
 import User from "../screens/User";
+import PageNotFound from "../screens/PageNotFound";
 import {
   getAllPosts,
   createPost,
@@ -77,6 +78,7 @@ function MainContainer(props) {
         <Route path="/" exact>
           <Home />
         </Route>
+
         <Route path="/login">
           <Login
             handleLogin={props.handleLogin}
@@ -127,6 +129,7 @@ function MainContainer(props) {
         <Route path="/post-edit/:id">
           <PostForm posts={posts} handlePostUpdate={handlePostUpdate} />
         </Route>
+        <Route component={PageNotFound} />
       </Switch>
     </div>
   );

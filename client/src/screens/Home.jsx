@@ -19,22 +19,22 @@ function Home(props) {
           or join a study group sessions to{" "}
           <span className="highlighted">level up your motivation!</span>
         </div>{" "}
-      </div>
-      <div id="home-view-list">
-        <div>
-          Are you a <span className="highlighted">developer</span> or{" "}
-          <span className="highlighted">designer</span> looking to join a team
-          for your next project?
-          <Link to="/recruit-side-project">
-            <button>View current listing of teams</button>
-          </Link>
-        </div>
-        <div>
-          Best way to{" "}
-          <span className="highlighted">eliminates procrastination!</span>
-          <Link to="/study-group">
-            <button>View our current study groups</button>
-          </Link>
+        <div id="home-view-list">
+          <div>
+            Are you a <span className="highlighted">developer</span> or{" "}
+            <span className="highlighted">designer</span> looking to join a team
+            for your next project?
+            <Link to="/recruit-side-project">
+              <button>View current listing of teams</button>
+            </Link>
+          </div>
+          <div>
+            Best way to{" "}
+            <span className="highlighted">eliminates procrastination!</span>
+            <Link to="/study-group">
+              <button>View our current study groups</button>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

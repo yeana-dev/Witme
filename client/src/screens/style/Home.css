@@ -9,11 +9,11 @@
   background-size: contain;
   background-repeat: no-repeat;
   max-width: 1120px;
-  height: 500px;
+  /* height: 500px; */
 }
 
 #home-title header {
-  padding-top: 2em;
+  padding-top: 13vh;
   font-size: 65px;
   font-weight: 900;
   letter-spacing: -5px;
@@ -21,7 +21,7 @@
 }
 
 #home-title-bottom {
-  padding-top: 1em;
+  padding-top: 10vh;
   line-height: 2.5em;
   font-size: 17px;
 }
@@ -65,13 +65,30 @@
   transition: all 250ms ease-in-out;
 }
 
-/* @media (max-width: 992px) {
-  #home-title {
-    padding: 1.5em 1em;
-    font-size: 50px;
+@media (max-width: 768px) {
+  .home {
+    background-image: url(../../assets/home-small.png);
+    background-size: 105%;
+    background-repeat: no-repeat;
   }
+  .home header {
+    text-align: center;
+  }
+  #home-title {
+    background-image: none;
+    padding-top: 20vh;
+  }
+  #home-title header {
+    font-size: 55px;
+    padding-top: 400px;
+  }
+
   #home-title-bottom {
     text-align: center;
-    margin-top: 2em;
+    font-size: 14px;
   }
-} */
+  #home-view-list {
+    flex-direction: column;
+    gap: 3em;
+  }
+}

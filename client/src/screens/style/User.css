@@ -1,5 +1,5 @@
 .user-detail-container {
-  max-width: 800px;
+  max-width: 768px;
   margin: 2em auto;
 }
 
@@ -94,4 +94,13 @@
 
 .from {
   color: #636363;
+}
+
+@media (max-width: 768px) {
+  .user-detail-container {
+    margin: 3em;
+  }
+  .user-comment-container {
+    grid-template-columns: none;
+  }
 }
