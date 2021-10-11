@@ -48,9 +48,11 @@ function SideProjectPosts(props) {
         </div>
       </div>
       <div className="new-post">
-        <Link to="/new-post-recruit">
-          <i className="fas fa-file"></i>&nbsp;&nbsp;NEW POST
-        </Link>
+        {props.currentUser && (
+          <Link to="/new-post-recruit">
+            <i className="fas fa-file"></i>&nbsp;&nbsp;NEW POST
+          </Link>
+        )}
       </div>
       <div className="post-card-container">
         {filteredPosts.map((post, index) => (

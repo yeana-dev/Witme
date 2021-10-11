@@ -34,7 +34,7 @@
 
 .ck.ck-editor__main > .ck-editor__editable {
   height: 300px;
-  max-width: 1000px;
+  width: 100%;
 }
 
 .ck.ck-editor,

@@ -93,10 +93,10 @@ function MainContainer(props) {
           <User currentUser={props.currentUser} />
         </Route>
         <Route path="/recruit-side-project" exact>
-          <SideProjectPosts posts={posts} />
+          <SideProjectPosts posts={posts} currentUser={props.currentUser} />
         </Route>
         <Route path="/study-group" exact>
-          <StudyPosts posts={posts} />
+          <StudyPosts posts={posts} currentUser={props.currentUser} />
         </Route>
         <Route path="/recruit-side-project/:id">
           <PostDetail
