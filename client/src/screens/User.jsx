@@ -2,7 +2,6 @@ import { getUsersPosts } from "../services/posts";
 import { getUsersComments } from "../services/comments";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import PostCard from "../components/PostCard";
 import "./style/User.css";
 
 function User(props) {
