@@ -74,19 +74,16 @@ src
       |__ images
 |__ components/
       |__ style
-          |__ Nav.css
-          |__ Footer.css
-          |__ PostForm.css
-          |__ PostList.css
+          |__ Comment.css
+          |__ CommentForm.css
+          |__ Navigation.css
+          |__ PostCard.css
       |__ layout
           |__ Layout.jsx
-          |__ Nav.jsx
-          |__ Footer.jsx
-      |__ PostForm.jsx
-      |__ PostList.jsx
-      |__ PostDetail.jsx
-      |__ CommentInput.jsx
-      |__ Comments.jsx
+          |__ Navigation.jsx
+      |__ Comment.jsx
+      |__ CommentForm.jsx
+      |__ PostCard.jsx
 |__ services/
       |__ apiConfig.js
       |__ auth.js
@@ -98,23 +95,23 @@ src
 |__ screens/
       |__ style
           |__ Home.css
-          |__ Lookingfor.css
-          |__ Ask.css
           |__ Login.css
-          |__ Signup.css
+          |__ PageNotFound.css
+          |__ PostDetail.css
+          |__ PostForm.css
+          |__ Register.css
+          |__ SideProjectPosts.css
+          |__ StudyPosts.css
+          |__ User.css
       |__ Home.jsx
-      |__ PostList.jsx (Filtered by categories (Ask, Join, Recruit))
-      |__ PostDetail.jsx
-      |__ CreatePost.jsx
-      |__ UpdatePost.jsx
-      |__ ProjectList.jsx
-      |__ ProjectDetail.jsx
-      |__ CreateProject.jsx
-      |__ UpdateProject.jsx
       |__ Login.jsx
-      |__ Signup.jsx
-
-
+      |__ PageNotFount.jsx
+      |__ PostDetail.jsx
+      |__ PostForm.jsx
+      |__ Register.jsx
+      |__ SideProjectPosts.jsx
+      |__ StudyPosts.jsx
+      |__ User.jsx
 ```
 
 #### Time Estimates
@@ -144,9 +141,9 @@ src
 
 ## Post-MVP
 
-- User's public profile: Their role, programming language, projects, their posts and comments.
-- Enable user comments on projects
-- Responsive web-design
+- [ ] User's public profile: Their role, programming language, projects, their posts and comments.
+- [x] Enable user comments on projects
+- [x] Responsive web-design
 
 ---
 
