@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import React from "react";
 import "@toast-ui/editor/dist/toastui-editor.css";
 import { Editor } from "@toast-ui/react-editor";
 import "tui-color-picker/dist/tui-color-picker.css";
@@ -30,6 +29,7 @@ function PostForm(props) {
           content: post.content,
         });
       }
+      editorRef.current.getInstance().setHTML(post.content);
     }
   }, [params.id, props.posts]);
 
@@ -48,8 +48,6 @@ function PostForm(props) {
       content: editorRef.current.getInstance().getHTML(),
     }));
   };
-
-  console.log(props.category);
 
   return (
     <div className="post-form-container">
@@ -74,7 +72,7 @@ function PostForm(props) {
             value={post.title}
             onChange={handleChange}
           />
-          {post.looking_for && (
+          {(post.looking_for || props.category === "side_project") && (
             <select
               name="looking_for"
               id="form-looking-for"
@@ -99,13 +97,13 @@ function PostForm(props) {
         </div>
         <div id="toast-ui-editor">
           <Editor
+            name="content"
+            value={post.content}
             previewStyle="vertical"
             height="500px"
             initialEditType="wysiwyg"
             useCommandShortcut={true}
-            value={post.content}
             ref={editorRef}
-            name="content"
             plugins={[colorSyntax]}
             onChange={handleContentChange}
           />
