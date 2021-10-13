@@ -1,4 +1,7 @@
-![image](https://user-images.githubusercontent.com/78275456/135881918-51e8632d-62d0-495a-a3d7-2920a07d809b.png)
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/78275456/135881918-51e8632d-62d0-495a-a3d7-2920a07d809b.png" /><br />
+  Final Project from <a href="https://generalassemb.ly" target="_blank">General Assembly</a> Software engineering immersive bootcamp(Jul. 21 ~ Oct. 21)
+</p>
 
 # PROJECT 4 : 'WITME' README<!-- omit in toc -->
 
@@ -50,13 +53,11 @@ Witme is a platform for developers and designers to create a team for their side
 
 #### Wireframes
 
-![image](https://user-images.githubusercontent.com/78275456/135876366-7eced0dc-9442-4c62-8c29-cb202f83c968.png)
-![image](https://user-images.githubusercontent.com/78275456/135876413-69b3f1db-20aa-46b4-93c8-c35a863bfb7f.png)
-![image](https://user-images.githubusercontent.com/78275456/135876435-06cffc90-5e2a-4cce-aa9c-66fabd3b3d9d.png)
-![image](https://user-images.githubusercontent.com/78275456/135888396-a0f5410c-de56-433c-bf2d-bdc76ad7649a.png)
-![image](https://user-images.githubusercontent.com/78275456/135888402-e5afa3aa-58a5-4944-bbb7-ea323646f523.png)
-![image](https://user-images.githubusercontent.com/78275456/135876462-b7ed4fc0-32ee-464c-b280-f756601c7350.png)
-![image](https://user-images.githubusercontent.com/78275456/135876477-e5e13ad3-8706-4cac-9d48-8a49cdff53b7.png)
+
+![image](https://user-images.githubusercontent.com/78275456/135876366-7eced0dc-9442-4c62-8c29-cb202f83c968.png) | ![image](https://user-images.githubusercontent.com/78275456/135876413-69b3f1db-20aa-46b4-93c8-c35a863bfb7f.png) |
+|--|--|
+| ![image](https://user-images.githubusercontent.com/78275456/135888396-a0f5410c-de56-433c-bf2d-bdc76ad7649a.png) | ![image](https://user-images.githubusercontent.com/78275456/135888402-e5afa3aa-58a5-4944-bbb7-ea323646f523.png) |
+| ![image](https://user-images.githubusercontent.com/78275456/135876462-b7ed4fc0-32ee-464c-b280-f756601c7350.png) | ![image](https://user-images.githubusercontent.com/78275456/135876477-e5e13ad3-8706-4cac-9d48-8a49cdff53b7.png) |
 
 #### Component Tree
 
