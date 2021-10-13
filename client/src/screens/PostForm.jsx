@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
-import { useParams, Redirect } from "react-router-dom";
-import { CKEditor } from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import { useParams } from "react-router-dom";
+import React from "react";
+import "@toast-ui/editor/dist/toastui-editor.css";
+import { Editor } from "@toast-ui/react-editor";
+import "tui-color-picker/dist/tui-color-picker.css";
+import "@toast-ui/editor-plugin-color-syntax/dist/toastui-editor-plugin-color-syntax.css";
+import colorSyntax from "@toast-ui/editor-plugin-color-syntax";
 import "./style/PostForm.css";
+
 function PostForm(props) {
   const params = useParams();
   const [post, setPost] = useState({
@@ -36,6 +41,16 @@ function PostForm(props) {
     }));
   };
 
+  const editorRef = React.createRef();
+  const handleContentChange = () => {
+    setPost((prevState) => ({
+      ...prevState,
+      content: editorRef.current.getInstance().getHTML(),
+    }));
+  };
+
+  console.log(props.category);
+
   return (
     <div className="post-form-container">
       <form
@@ -59,7 +74,7 @@ function PostForm(props) {
             value={post.title}
             onChange={handleChange}
           />
-          {props.category === "side_project" && (
+          {post.looking_for && (
             <select
               name="looking_for"
               id="form-looking-for"
@@ -82,32 +97,19 @@ function PostForm(props) {
             onChange={handleChange}
           />
         </div>
-        <CKEditor
-          name="content"
-          id="ckeditor-width"
-          editor={ClassicEditor}
-          data={post.content}
-          width="100%"
-          config={{
-            removePlugins: [
-              "CKFinderUploadAdapter",
-              "CKFinder",
-              "EasyImage",
-              "Image",
-              "ImageCaption",
-              "ImageStyle",
-              "ImageToolbar",
-            ],
-            width: "100%",
-          }}
-          onChange={(event, editor) => {
-            const data = editor.getData();
-            setPost((prevState) => ({
-              ...prevState,
-              content: data,
-            }));
-          }}
-        />
+        <div id="toast-ui-editor">
+          <Editor
+            previewStyle="vertical"
+            height="500px"
+            initialEditType="wysiwyg"
+            useCommandShortcut={true}
+            value={post.content}
+            ref={editorRef}
+            name="content"
+            plugins={[colorSyntax]}
+            onChange={handleContentChange}
+          />
+        </div>
         <input type="submit" id="form-submit" />
       </form>
     </div>
