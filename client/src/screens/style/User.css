@@ -6,7 +6,8 @@
 .user-detail-container header {
   font-family: "Rubik", sans-serif;
   color: #3d53ff;
-  font-weight: 900;
+  font-weight: 700;
+  letter-spacing: -2px;
   font-size: 30px;
   border-bottom: 2px solid #e6e6e6;
 }
