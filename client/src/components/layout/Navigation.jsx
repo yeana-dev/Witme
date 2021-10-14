@@ -4,6 +4,7 @@ import Nav from "react-bootstrap/Nav";
 import { NavLink, Link } from "react-router-dom";
 import { default as logosvg } from "../../assets/nav_logo.svg";
 import { useState } from "react";
+
 function Navigation(props) {
   const [expanded, setExpanded] = useState(false);
   return (
@@ -37,6 +38,8 @@ function Navigation(props) {
             <NavLink to="/study-group" onClick={() => setExpanded(false)}>
               STUDY GROUPS
             </NavLink>
+            {/* If there is current user that is logged in, display user's username with links to the
+            user's detail page and logout button. If not, display login button*/}
             {props.currentUser ? (
               <div className="navbar-user" onClick={() => setExpanded(false)}>
                 <span id="navbar-username">

@@ -69,6 +69,8 @@ function PostDetail(props) {
               </div>
             ))}
           </div>
+          {/* Edit and delete button is only visible to user who is the author of current post.
+          Will check if the user is logged in and has same username of current post. */}
           {props.currentUser &&
             post.user.username === props.currentUser.username && (
               <div className="post-detail-edit">

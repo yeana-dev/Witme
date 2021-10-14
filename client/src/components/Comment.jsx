@@ -5,6 +5,7 @@ import { getOnePostsComments } from "../services/comments";
 function Comment(props) {
   useEffect(() => {
     const fetchComments = async () => {
+      //  listing comments by using method that grab post's id and list comments that is associated with that post
       const resp = await getOnePostsComments(props.post_id);
       props.setComments(resp);
     };
@@ -25,6 +26,8 @@ function Comment(props) {
                   {comment.created_at.slice(0, 10)}
                 </div>
               </div>
+              {/* Edit and delete button is only visible to user who is the author of current comment.
+              Will check if the user is logged in and has same username of current comment. */}
               {props.currentUser &&
                 props.currentUser.username === comment.user.username && (
                   <div className="comment-edit-del-btn">
@@ -32,6 +35,8 @@ function Comment(props) {
                       className="far fa-edit"
                       onClick={() => {
                         window.scrollTo(0, 0);
+                        // When user clicks edit on comment, it will grab the selected comment's id
+                        // and set it as commentIdEdit so the comment form can be filled with the comment's current content
                         props.setCommentIdEdit(comment.id);
                       }}
                     ></i>
