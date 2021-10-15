@@ -19,6 +19,8 @@ function PostForm(props) {
 
   useEffect(() => {
     if (params.id && props.posts.length > 0) {
+      // If there is an ID parameter and having a data set of posts, find a post to edit by
+      // grabbing ID from parameter and filter from posts data.
       const post = props.posts.find((post) => Number(params.id) === post.id);
       if (post) {
         setPost({
@@ -29,6 +31,7 @@ function PostForm(props) {
           content: post.content,
         });
       }
+      // Pre-filling editing post's content into editor
       editorRef.current.getInstance().setHTML(post.content);
     }
   }, [params.id, props.posts]);
