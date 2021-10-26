@@ -1,11 +1,11 @@
 <p align="center">
   <img src="https://user-images.githubusercontent.com/78275456/135881918-51e8632d-62d0-495a-a3d7-2920a07d809b.png" /><br />
-  Final Project from <a href="https://generalassemb.ly" target="blank">General Assembly</a> Software engineering immersive bootcamp(Jul. 21 ~ Oct. 21)
+  Final Project from <a href="https://generalassemb.ly" target="blank">General Assembly</a> Software engineering immersive bootcamp
 </p>
 
 # PROJECT 4 : 'WITME' README<!-- omit in toc -->
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/nsBQCncReNA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<a href="https://www.youtube.com/watch?v=nsBQCncReNA" target="_blank"><img src="https://img.youtube.com/vi/nsBQCncReNA/0.jpg" align="right" alt="witme_youtube" /></a>
 
 - [Overview](#overview)
 - [MVP](#mvp)
