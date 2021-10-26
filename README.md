@@ -5,6 +5,8 @@
 
 # PROJECT 4 : 'WITME' README<!-- omit in toc -->
 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/nsBQCncReNA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 - [Overview](#overview)
 - [MVP](#mvp)
   - [Goals](#goals)
