@@ -52,13 +52,16 @@ function CommentForm(props) {
         autoComplete="off"
         id="comment-form-input"
         // letting user know that only logged in user can comment
-        placeholder={props.currentUser ? "New comment" : "Please Login"}
+        placeholder={
+          props.currentUser ? "New comment" : "Login to leave a comment!"
+        }
         onChange={handleChange}
         value={commentForm.content}
       />
       <input
         type="submit"
         id="comment-form-submit"
+        // disable comment form if the user is not logged in
         disabled={props.currentUser ? false : true}
       />
     </form>

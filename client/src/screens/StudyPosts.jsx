@@ -4,6 +4,7 @@ import study_group from "../assets/study_group.png";
 import "./style/StudyPosts.css";
 
 function StudyPosts(props) {
+  // Display posts that has a category of 'study_group'
   const filteredPosts = props.posts.filter(
     (post) => post.category.name === "study_group"
   );

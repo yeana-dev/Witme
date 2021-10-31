@@ -38,8 +38,11 @@ function Login(props) {
         onChange={handleChange}
       />
       {props.loginError ? (
+        // We created toggle state from MainContainer. If there is an error during login,
+        // the toggle state changes to TRUE. We can display this error alert if the toggle state is true
         <div id="login-error">Invalid Username / Password!</div>
       ) : (
+        // If the toggle state is false, we will need an empty div to make sure the layout don't get shifted.
         <div id="login-error-empty"></div>
       )}
       <input type="submit" id="input-submit-button" value="Login" />

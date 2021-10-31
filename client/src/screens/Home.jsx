@@ -1,7 +1,7 @@
 import "./style/Home.css";
 import { Link } from "react-router-dom";
 
-function Home(props) {
+function Home() {
   return (
     <div className="home">
       <div id="home-title">
@@ -18,7 +18,7 @@ function Home(props) {
           </span>, <br />
           or join a study group sessions to{" "}
           <span className="highlighted">level up your motivation!</span>
-        </div>{" "}
+        </div>
         <div id="home-view-list">
           <div>
             Are you a <span className="highlighted">developer</span> or{" "}

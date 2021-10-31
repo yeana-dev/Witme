@@ -27,7 +27,7 @@ function Comment(props) {
                 </div>
               </div>
               {/* Edit and delete button is only visible to user who is the author of current comment.
-              Will check if the user is logged in and has same username of current comment. */}
+              Will check if the user is logged in and has same username of current comment's author. */}
               {props.currentUser &&
                 props.currentUser.username === comment.user.username && (
                   <div className="comment-edit-del-btn">

@@ -8,6 +8,8 @@ function Register(props) {
     password: "",
   });
   const [passwordConfirm, setPasswordConfirm] = useState("");
+
+  // Created useState to display error message if the passwords don't match
   const [passwordLengthError, setPasswordLengthError] = useState(false);
   const [passwordConfirmError, setPasswordConfirmError] = useState(false);
 

@@ -27,6 +27,7 @@ function PostDetail(props) {
 
   const handleCreateComment = async (comment, id) => {
     const newComment = await createComment(comment, id);
+    // Add the new comment into comments array
     setComments((prevState) => [newComment, ...prevState]);
   };
 
@@ -34,6 +35,7 @@ function PostDetail(props) {
     const updatedComment = await updateComment(id, comment);
     setComments((prevState) =>
       prevState.map((comment) => {
+        // Update the comments array by look for a comment that is being editted, and edit the comment.
         return comment.id === id ? updatedComment : comment;
       })
     );
@@ -41,7 +43,10 @@ function PostDetail(props) {
 
   const handleDeleteComment = async (id) => {
     await deleteComment(id);
+    // In case user clicks the comment's edit button and deletes, we need to make sure the currnet commentIdEdit is set back to 0
+    // Otherwise, the content of the comment will still remains in the comment input
     setCommentIdEdit(0);
+    // Remove the deleted comment from comments array to keep them updated without refreshing the page
     setComments((prevState) =>
       prevState.filter((comment) => comment.id !== id)
     );

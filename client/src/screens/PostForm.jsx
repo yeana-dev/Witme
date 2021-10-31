@@ -13,6 +13,7 @@ function PostForm(props) {
     title: "",
     looking_for: "",
     skills: "",
+    // User don't need to fill the category since this screen has its category from props
     category: `${props.category}`,
     content: "",
   });
@@ -44,6 +45,7 @@ function PostForm(props) {
     }));
   };
 
+  // Toast UI Editor
   const editorRef = React.createRef();
   const handleContentChange = () => {
     setPost((prevState) => ({
@@ -58,13 +60,21 @@ function PostForm(props) {
         className="create-post"
         onSubmit={(event) => {
           event.preventDefault();
+          // On submit, we will need to check if we are trying to edit or create a post,
           if (params.id) {
+            // If there is a parameter of post id, meaning we are updating the post,
+            // We need to execute PUT method that we got as props from MainContainer.
+            // Passing the current post's id and current post's content
             props.handlePostUpdate(params.id, post);
           } else {
+            // If there is no parameter, meaning we are creating a new post,
+            // We need to execute POST method that we got as props from MainContainer.
+            // Passing the post's content and the current post's category, which we got as props from MainContainer also.
             props.handlePostCreate(post, props.category);
           }
         }}
       >
+        {/* Display header accordingly */}
         <header>{params.id ? "EDIT POST" : "NEW POST"}</header>
         <div className="post-form-top">
           <input
@@ -75,6 +85,10 @@ function PostForm(props) {
             value={post.title}
             onChange={handleChange}
           />
+          {/* We only need to display looking_for dropdown option if the user is creating a post looking for
+          a new team member for their side project. We can do this by checking in two ways.
+          1. If the this post is getting updated, check if current post already has a looking_for key
+          2. If the this post is being created, check if the current category we are at is 'side_project'*/}
           {(post.looking_for || props.category === "side_project") && (
             <select
               name="looking_for"
@@ -107,6 +121,7 @@ function PostForm(props) {
             initialEditType="wysiwyg"
             useCommandShortcut={true}
             ref={editorRef}
+            // Color changing plugin for Toast UI Editor
             plugins={[colorSyntax]}
             onChange={handleContentChange}
           />
